@@ -43,7 +43,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opciones de Tienda</h6>
                         <a class="collapse-item" href="body.php?pagina=ventasPagos">Pagos/Ventas</a>
-                        <a class="collapse-item" href="body.php?pagina=cambioDevolucion">Cambio/Devoluciones</a>
+                        <a class="collapse-item" href="body.php?pagina=ordenDevolucion">Generar Orden Devolucion</a>
                     </div>
                 </div>
             </li>

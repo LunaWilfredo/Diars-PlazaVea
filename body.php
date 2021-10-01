@@ -7,7 +7,7 @@
     include_once 'Model/loginModel.php';
     // Controllers
     include_once 'Controller/loginController.php';
-    include_once 'Controller/cambioDevolucionController.php';
+    include_once 'Controller/ordenDevolucionController.php';
     include_once 'Controller/pagosCajaController.php';
     include_once 'Controller/pedidosProveedorController.php';
     include_once 'Controller/reposicionProductosController.php';
@@ -22,7 +22,7 @@
 if(isset($_GET['pagina'])){
  
     $page = $_GET['pagina'];
-    if($page == 'blank' || $page == "cambioDevolucion" || $page == "listaProductos" || $page == "pedidosProveedor" || $page == "retiroAlmacen" || $page == "ventasPagos" || $page == "generarCotizacion" || $page == "404"){
+    if($page == 'blank' || $page == "ordenDevolucion" || $page == "listaProductos" || $page == "pedidosProveedor" || $page == "retiroAlmacen" || $page == "ventasPagos" || $page == "generarCotizacion" || $page == "404"){
         require_once 'View/Content/'.$_GET['pagina'].'.php';
     }else{
         require_once 'View/Content/404.php';
