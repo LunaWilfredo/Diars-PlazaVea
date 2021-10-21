@@ -22,7 +22,7 @@
 if(isset($_GET['pagina'])){
  
     $page = $_GET['pagina'];
-    if($page == 'blank' || $page == "ordenDevolucion" || $page == "listaProductos" || $page == "pedidosProveedor" || $page == "retiroAlmacen" || $page == "ventasPagos" || $page == "generarCotizacion" || $page == "404"){
+    if($page == 'blank' || $page == "ordenDevolucion" || $page == "listaProductos" || $page == "pedidosProveedor" || $page == "retiroAlmacen" || $page == "ventasPagos" || $page == "generarCotizacion" || $page == "buscarProducto" || $page == "404"){
         require_once 'View/Content/'.$_GET['pagina'].'.php';
     }else{
         require_once 'View/Content/404.php';

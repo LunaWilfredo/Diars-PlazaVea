@@ -43,7 +43,8 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opciones de Tienda</h6>
                         <a class="collapse-item" href="body.php?pagina=ventasPagos">Pagos/Ventas</a>
-                        <a class="collapse-item" href="body.php?pagina=ordenDevolucion">Generar Orden Devolucion</a>
+                        <a class="collapse-item" href="body.php?pagina=buscarProducto">Buscar Producto</a>
+                        <a class="collapse-item" href="body.php?pagina=ordenDevolucion">Generar Orden Dev.</a>
                     </div>
                 </div>
             </li>
@@ -69,7 +70,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opciones de Almacen:</h6>
                         <a class="collapse-item" href="body.php?pagina=listaProductos">Lista de Productos</a>
-                        <a class="collapse-item" href="body.php?pagina=retiroAlmacen">Reposicion de Productos</a>
+                        <a class="collapse-item" href="body.php?pagina=retiroAlmacen">Generar Orden Abast.</a>
                         <a class="collapse-item" href="body.php?pagina=pedidosProveedor">Pedidos Proveedor</a>
                     </div>
                 </div>
