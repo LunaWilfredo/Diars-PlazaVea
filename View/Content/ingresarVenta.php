@@ -5,7 +5,7 @@
                 <!-- Title -->
                 <div class="col-lg-12 text-center py-4">
                     <div class="mx-5 px-5 py-2">
-                        <h1 class="border-botton">Proceso de Pagos / Ventas</h1>
+                        <h1 class="border-botton">Insertar Venta</h1>
                     </div>
                 </div>
                 <!-- Body content -->
