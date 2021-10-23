@@ -42,7 +42,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opciones de Tienda</h6>
-                        <a class="collapse-item" href="body.php?pagina=ingresarVenta">Insertar Venta</a>
+                        <a class="collapse-item" href="body.php?pagina=menuVenta">Insertar Venta</a>
                         <a class="collapse-item" href="body.php?pagina=buscarProducto">Buscar Producto</a>
                         <a class="collapse-item" href="body.php?pagina=ordenDevolucion">Generar Orden Dev.</a>
                         <a class="collapse-item" href="body.php?pagina=generarExchange">Generar Exchange</a>
