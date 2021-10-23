@@ -26,6 +26,8 @@ if(isset($_GET['cerrar']) && $_GET['cerrar'] == 'ok'){
 
     <!-- Custom styles for this template-->
     <link href="./Assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <!-- Estilos CSS -->
+    <link href="./Assets/css/style.css" rel="stylesheet">
 
 </head>
 
