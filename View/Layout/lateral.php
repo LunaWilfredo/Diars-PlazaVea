@@ -45,6 +45,7 @@
                         <a class="collapse-item" href="body.php?pagina=ventasPagos">Pagos/Ventas</a>
                         <a class="collapse-item" href="body.php?pagina=buscarProducto">Buscar Producto</a>
                         <a class="collapse-item" href="body.php?pagina=ordenDevolucion">Generar Orden Dev.</a>
+                        <a class="collapse-item" href="body.php?pagina=generarExchange">Generar Exchange</a>
                     </div>
                 </div>
             </li>
