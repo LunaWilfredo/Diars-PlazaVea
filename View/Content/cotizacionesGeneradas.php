@@ -1,6 +1,6 @@
 <section class="">
     <form action="" method="post">
-        <div class="container-fluid">
+        <div class="container-fluid" style="height:750px ; width:84.9vw">
             <div class="row">
                 <!-- Title -->
                 <div class="col-lg-12 col-md-12 col-sm-12 text-center">
@@ -9,109 +9,50 @@
                     </div>
                 </div>
                 <!-- Body content -->
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="row my-2">
-                        <!-- Registrar Productos -->
-                        <div class="col-lg col-md col-sm">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registrarProductos">
-                                <i class="fas fa-vote-yea"></i> Registrar Producto
-                            </button>
-                        </div>
-                        <div class="col-lg col-md col-sm d-flex justify-content-end">
-                            <h6 class="m-2 text-dark">Total: <span class="text-primary">12.00</span></h6>
-                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#registrarProductos">
-                                <i class="fas fa-save"></i> Guardar Cotizacion
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="col-lg col-md col-sm  text-center">
                     <table class="table" id="dataTable" cellspacing="0">
                         <thead class="text-center bg-danger text-light">
                             <tr>
                                 <th>#</th>
-                                <th>Producto</th>
-                                <th>Marca</th>
-                                <th>Cantidad</th>
-                                <th>Precio de Venta</th>
-                                <th>Observaciones</th>
-                                <th>Accion</th>
+                                <th>Codigo Cotizacion</th>
+                                <th>Fecha</th>
+                                <th>Proveedor</th>
+                                <th>Detalles</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>1</td>
-                                <td>Producto Seleccionado</td>
-                                <td>Marca</td>
-                                <td>4</td>
+                                <td>CTZ0001</td>
+                                <td><?= date("d-M-Y")?></td>
+                                <td>Gloria</td>
                                 <td>
-                                    48.00
-                                        <!-- <div class="row">
-                                            <div class="col-12">
-                                                <input type="text" class="form-control text-center" name="" value="">
-                                            </div>
-                                        </div> -->
-                                </td>
-                                <td>Observaciones</td>
-                                <td>
-                                    <a href="" class="btn btn-danger"><i class="far fa-minus-square"></i></a>
-                                    <a href="" class="btn btn-primary"><i class="far fa-edit"></i></i></a>
+                                    <a href="" class="btn btn-primary"><i class="far fa-eye"></i></a>
                                 </td>
                             </tr>
                                 <td>2</td>
-                                <td>Producto Seleccionado</td>
-                                <td>Marca</td>
-                                <td>4</td>
+                                <td>CTZ0001</td>
+                                <td><?= date("d-M-Y")?></td>
+                                <td>Gloria</td>
                                 <td>
-                                    48.00
-                                        <!-- <div class="row">
-                                            <div class="col-12">
-                                                <input type="text" class="form-control text-center" name="" value="">
-                                            </div>
-                                        </div> -->
-                                </td>
-                                <td>Observaciones</td>
-                                <td>
-                                    <a href="" class="btn btn-danger"><i class="far fa-minus-square"></i></a>
-                                    <a href="" class="btn btn-primary"><i class="far fa-edit"></i></i></a>
+                                    <a href="" class="btn btn-primary"><i class="far fa-eye"></i></a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>3</td>
-                                <td>Producto Seleccionado</td>
-                                <td>Marca</td>
-                                <td>4</td>
+                                <td>CTZ0001</td>
+                                <td><?= date("d-M-Y")?></td>
+                                <td>Gloria</td>
                                 <td>
-                                    48.00
-                                        <!-- <div class="row">
-                                            <div class="col-12">
-                                                <input type="text" class="form-control text-center" name="" value="">
-                                            </div>
-                                        </div> -->
-                                </td>
-                                <td>Observaciones</td>
-                                <td>
-                                    <a href="" class="btn btn-danger"><i class="far fa-minus-square"></i></a>
-                                    <a href="" class="btn btn-primary"><i class="far fa-edit"></i></i></a>
+                                    <a href="" class="btn btn-primary"><i class="far fa-eye"></i></a>
                                 </td>
                             </tr>
-                                <td>1</td>
-                                <td>Producto Seleccionado</td>
-                                <td>Marca</td>
                                 <td>4</td>
+                                <td>CTZ0001</td>
+                                <td><?= date("d-M-Y")?></td>
+                                <td>Gloria</td>
                                 <td>
-                                    48.00
-                                        <!-- <div class="row">
-                                            <div class="col-12">
-                                                <input type="text" class="form-control text-center" name="" value="">
-                                            </div>
-                                        </div> -->
-                                </td>
-                                <td>Observaciones</td>
-                                <td>
-                                    <a href="" class="btn btn-danger"><i class="far fa-minus-square"></i></a>
-                                    <a href="" class="btn btn-primary"><i class="far fa-edit"></i></i></a>
+                                    <a href="" class="btn btn-primary"><i class="far fa-eye"></i></a>
                                 </td>
                             </tr>                                   
                         </tbody>
