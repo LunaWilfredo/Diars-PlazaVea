@@ -98,7 +98,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opciones de Proveedor:</h6>
                         <a class="collapse-item" href="body.php?pagina=generarCotizacion">Generador de Cotizacion</a>
-                        <a class="collapse-item" href="body.php?pagina=">Cotizaciones</a>                       
+                        <a class="collapse-item" href="body.php?pagina=cotizacionesGeneradas">Cotizaciones Generadas</a>                       
                     </div>
                 </div>
             </li>

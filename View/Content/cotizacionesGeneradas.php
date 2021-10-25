@@ -5,7 +5,7 @@
                 <!-- Title -->
                 <div class="col-lg-12 col-md-12 col-sm-12 text-center">
                     <div class="mx-5 px-5 py-2">
-                        <h1 class="border-botton">Generar Cotizacion</h1>
+                        <h1 class="border-botton">Cotizaciones Generadas</h1>
                     </div>
                 </div>
                 <!-- Body content -->
