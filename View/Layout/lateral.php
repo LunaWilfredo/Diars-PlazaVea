@@ -70,7 +70,7 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opciones de Almacen:</h6>
-                        <a class="collapse-item" href="body.php?pagina=listaProductos">Lista de Productos</a>
+                        <a class="collapse-item" href="body.php?pagina=listaProductos">Consultar Productos</a>
                         <a class="collapse-item" href="body.php?pagina=retiroAlmacen">Generar Orden Abast.</a>
                         <a class="collapse-item" href="body.php?pagina=pedidosProveedor">Pedidos Proveedor</a>
                     </div>
