@@ -1,6 +1,6 @@
 <section class="">
     <form action="" method="post">
-        <div class="container-fluid" style="height:760px ; width:85vw">
+        <div class="container-fluid g-0" style="height:750px ; width:84.9vw">
             <div class="row" >
                 <!-- Title -->
                 <div class="col-lg-12 text-center">
@@ -24,6 +24,10 @@
                 </div>
             </div>
         </div>
+        <div class="alert alert-success" role="alert">
+            <i class="fas fa-check-circle"></i> Venta realizada con exito.
+        </div>
     </form>
 </section>
+
 
