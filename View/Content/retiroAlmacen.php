@@ -12,65 +12,37 @@
                 <div class="col-lg-12">
                     <!-- Registrar Productos -->
                     <form action="" method="post">
-                        <div class="row d-flex justify-content-end">
-                            <div class="col-lg">
-                                <button type="button" class="btn btn-success " ">
+                        <div class="row">
+                            <div class="col-lg d-flex justify-content-start">
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#registrarProducto">
                                     <i class="fas fa-search"></i> Buscar Productos
                                 </button>
-                            </div>
-                            <div class="col-lg">
-                                <button type="button" class="btn btn-warning">
+                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#">
                                     <i class="far fa-plus-square"></i> Registrar Productos
                                 </button>
                             </div>
-                            <div class="col-lg">
+                            <div class="col-lg d-flex justify-content-end">
                                 <div class="text-center">
                                     <input type="submit" value="Realizar Envio" class="btn btn-primary btn-rounded">
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md">
-                                <label for="codigoproducto">Lote de Producto</label>
-                                <input type="text" class="form-control text-center" name="" value="0001" readonly>
-                            </div>
-                            <div class="col-md">
-                                <label for="codigoproducto">Descripcion de Producto</label>
-                                <input type="text" class="form-control text-center" name="" value="Arroz Costeño">
-                            </div>
-                            <div class="col-md">
-                                <label for="codigoproducto">Cantidad Retiro</label>
-                                <input type="text" class="form-control text-center" name="" value="4">
-                            </div>
-                            <div class="col-md">
-                                <label for="codigoproducto">Categoria</label>
-                                <input type="text" class="form-control text-center" name="" value="Categoria" readonly>
-                            </div>
-                            <div class="col-md">
-                                <label for="codigoproducto">Fecha Retiro</label>
-                                <input type="text" class="form-control text-center" name="" value="25/09/2021" readonly>
-                            </div>
-                            <div class="col-md">
-                                <label for="codigoproducto">Fecha Vencimiento (P)</label>
-                                <input type="text" class="form-control text-center" name="" value="25/09/2021" readonly>
-                            </div>
-                        </div>
                     </form>
                 </div>
 
-                <div class="col-lg  text-center">
+                <div class="col-lg  text-center mt-2">
                         <p class="font-weight-bold">Lista de Productos Solicitados</p>
                         <div class="container-fluid">
-                            <table class="table-responsive table" id="dataTable" width="100%" cellspacing="0">
+                            <table class="table" id="dataTable" width="100%" cellspacing="0">
                                 <thead class="text-center bg-danger text-light">
                                     <tr>
                                         <th>#</th>
-                                        <th>Descripcion</th>
-                                        <th>Precio Unitario.(s/.)</th>
-                                        <th>Cantidad</th>
+                                        <th>Cod. Producto</th>
+                                        <th>Producto</th>
+                                        <th>Cantidad Retiro</th>
                                         <th>Categoria</th>
                                         <th>Fecha Retiro</th>
-                                        <th>Fecha Vencimiento (P)</th>
+                                        <th>Encargado</th>
                                         <th>Accion</th>
                                     </tr>
                                 </thead>
@@ -79,19 +51,12 @@
                                         <td><a href="" class="text-dark text-decoration-none">1</a></td>
                                         <td>Producto Seleccionado</td>
                                         <td>12.00</td>
-                                        <td>
-                                            2
-                                            <div class="form-row">
-                                                <div class="col-12">
-                                                    <input type="text" class="form-control text-center" name="" value="2">
-                                                </div>
-                                            </div>
-                                        </td>
+                                        <td>2</td>
                                         <td>aceites</td>
                                         <td>25/09/2021</td>
                                         <td>25/09/2021</td>
                                         <td>
-                                            <a href="" class="btn btn-danger"><i class="far fa-minus-square"></i></a>
+                                            <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                             <a href="" class="btn btn-primary"><i class="far fa-edit"></i></a>
                                         </td>
                                     </tr>
@@ -142,3 +107,55 @@
         </div>
     </form>
 </section>
+
+<!-- Buscar Producto -->
+<form action="" method="post">
+    <div class="modal fade" id="registrarProducto" tabindex="-1" aria-labelledby="registrarProducto" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="refund">Impresion</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md">
+                            <label for="codigoproducto">Buscar</label>
+                            <input type="text" class="form-control text-center" name="" value="" placeholder="Codigo de Producto, nombre ">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md">
+                            <label for="codigoproducto">Codigo Producto</label>
+                            <input type="text" class="form-control text-center" name="" value="0001" readonly>
+                        </div>
+                        <div class="col-md">
+                            <label for="codigoproducto">Producto</label>
+                            <input type="text" class="form-control text-center" name="" value="Arroz Costeño">
+                        </div>
+                        <div class="col-md">
+                            <label for="codigoproducto">Cantidad Retiro</label>
+                            <input type="text" class="form-control text-center" name="" value="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                                <label for="codigoproducto">Categoria</label>
+                                <input type="text" class="form-control text-center" name="" value="Categoria" readonly>
+                        </div>
+                        <div class="col-md">
+                                <label for="codigoproducto">Fecha Retiro</label>
+                                <input type="text" class="form-control text-center" name="" value="25/09/2021" readonly>
+                        </div>
+                    </div>                    
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Registrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
