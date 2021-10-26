@@ -1,64 +1,65 @@
 <section class="">
     <form action="" method="post">
         <div class="container-fluid">
-            <div class="row my-2 mb-2">
+            <div class="row">
                 <!-- Title -->
-                <div class="col-lg-12 text-center py-4">
-                    <div class="mx-5 px-5 py-2">
+                <div class="col-lg-12 text-center">
+                    <div class="py-2">
                         <h1 class="border-botton">Solicitar Productos</h1>
                     </div>
                 </div>
                 <!-- Body content -->
-                <div class="col-lg-3">
-                    <!-- Title -->
-                    <p class="text-center my-2">Buscar producto</p>
+                <div class="col-lg-12">
                     <!-- Registrar Productos -->
                     <form action="" method="post">
-                        <div class="form-row">
-                            <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-lg">
+                                <button type="button" class="btn btn-success " ">
+                                    <i class="fas fa-search"></i> Buscar Productos
+                                </button>
+                            </div>
+                            <div class="col-lg">
+                                <button type="button" class="btn btn-warning " ">
+                                    <i class="far fa-plus-square"></i> Registrar Productos
+                                </button>
+                            </div>
+                            <div class="col-lg">
+                                <div class="text-center">
+                                    <input type="submit" value="Realizar Envio" class="btn btn-primary btn-rounded">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md">
                                 <label for="codigoproducto">Lote de Producto</label>
                                 <input type="text" class="form-control text-center" name="" value="0001" readonly>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md">
                                 <label for="codigoproducto">Descripcion de Producto</label>
                                 <input type="text" class="form-control text-center" name="" value="Arroz Costeño">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md">
                                 <label for="codigoproducto">Cantidad Retiro</label>
                                 <input type="text" class="form-control text-center" name="" value="4">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md">
                                 <label for="codigoproducto">Categoria</label>
                                 <input type="text" class="form-control text-center" name="" value="Categoria" readonly>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md">
                                 <label for="codigoproducto">Fecha Retiro</label>
                                 <input type="text" class="form-control text-center" name="" value="25/09/2021" readonly>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md">
                                 <label for="codigoproducto">Fecha Vencimiento (P)</label>
                                 <input type="text" class="form-control text-center" name="" value="25/09/2021" readonly>
                             </div>
                         </div>
-                        <div class="text-center my-2">
-                            <button type="button" class="btn btn-success " ">
-                                <i class="fas fa-search"></i> Buscar Productos
-                            </button>
-                            <button type="button" class="btn btn-warning " ">
-                                <i class="far fa-plus-square"></i> Registrar Productos
-                            </button>
-                        </div>
                     </form>
-                    <div class="border p-2">
-                        <h6 class="font-weight-bold">Notes:</h6>
-                        <p class="lead">Buscar Producto e Ingresar Cantidad a Retirar</p>
-                        <p class="lead">(P) Producto</p>
-                    </div>
-                    
                 </div>
 
-                <div class="col-lg border-left-danger text-center">
-                        <p class="font-weight-bold">Lista de Productos Tienda</p>
+                <div class="col-lg  text-center">
+                        <p class="font-weight-bold">Lista de Productos Solicitados</p>
                         <div class="container-fluid">
                             <table class="table-responsive table" id="dataTable" width="100%" cellspacing="0">
                                 <thead class="text-center bg-danger text-light">
@@ -136,12 +137,6 @@
                                 </tbody>
                             </table>
                         </div>
-                </div>
-                <div class="col-lg-2">
-                    <!-- Boton de accion -->
-                    <div class="text-center border-left-danger">
-                        <input type="submit" value="Realizar Envio" class="btn btn-danger btn-rounded btn-lg">
-                    </div>
                 </div>
             </div>
         </div>
