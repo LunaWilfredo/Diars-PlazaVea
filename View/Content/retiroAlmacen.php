@@ -12,14 +12,14 @@
                 <div class="col-lg-12">
                     <!-- Registrar Productos -->
                     <form action="" method="post">
-                        <div class="row">
+                        <div class="row d-flex justify-content-end">
                             <div class="col-lg">
                                 <button type="button" class="btn btn-success " ">
                                     <i class="fas fa-search"></i> Buscar Productos
                                 </button>
                             </div>
                             <div class="col-lg">
-                                <button type="button" class="btn btn-warning " ">
+                                <button type="button" class="btn btn-warning">
                                     <i class="far fa-plus-square"></i> Registrar Productos
                                 </button>
                             </div>
