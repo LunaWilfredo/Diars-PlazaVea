@@ -73,6 +73,9 @@
                         <a class="collapse-item" href="body.php?pagina=listaProductos">Consultar Productos</a>
                         <a class="collapse-item" href="body.php?pagina=retiroAlmacen">Generar Orden Abast.</a>
                         <a class="collapse-item" href="body.php?pagina=pedidosProveedor">Generar Request</a>
+                        <a class="collapse-item" href="body.php?pagina=actualizarStock">Actualizar Stock</a>
+                        <a class="collapse-item" href="body.php?pagina=consultarVencimiento">Estado de Productos</a>
+                        
                     </div>
                 </div>
             </li>

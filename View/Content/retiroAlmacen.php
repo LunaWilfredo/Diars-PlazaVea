@@ -17,91 +17,81 @@
                                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#registrarProducto">
                                     <i class="fas fa-search"></i> Buscar Productos
                                 </button>
-                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#">
-                                    <i class="far fa-plus-square"></i> Registrar Productos
-                                </button>
-                            </div>
-                            <div class="col-lg d-flex justify-content-end">
-                                <div class="text-center">
-                                    <input type="submit" value="Realizar Envio" class="btn btn-primary btn-rounded">
-                                </div>
                             </div>
                         </div>
                     </form>
                 </div>
 
                 <div class="col-lg  text-center mt-2">
-                        <p class="font-weight-bold">Lista de Productos Solicitados</p>
-                        <div class="container-fluid">
-                            <table class="table" id="dataTable" width="100%" cellspacing="0">
-                                <thead class="text-center bg-danger text-light">
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Cod. Producto</th>
-                                        <th>Producto</th>
-                                        <th>Cantidad Retiro</th>
-                                        <th>Categoria</th>
-                                        <th>Fecha Retiro</th>
-                                        <th>Encargado</th>
-                                        <th>Accion</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><a href="" class="text-dark text-decoration-none">1</a></td>
-                                        <td>Producto Seleccionado</td>
-                                        <td>12.00</td>
-                                        <td>2</td>
-                                        <td>aceites</td>
-                                        <td>25/09/2021</td>
-                                        <td>25/09/2021</td>
-                                        <td>
-                                            <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                                            <a href="" class="btn btn-primary"><i class="far fa-edit"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="" class="text-dark text-decoration-none">2</a></td>
-                                        <td>Producto Seleccionado</td>
-                                        <td>12.00</td>
-                                        <td>2</td>
-                                        <td>aceites</td>
-                                        <td>25/09/2021</td>
-                                        <td>25/09/2021</td>
-                                        <td>
-                                            <a href="" class="btn btn-danger"><i class="far fa-minus-square"></i></a>
-                                            <a href="" class="btn btn-primary"><i class="far fa-edit"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="" class="text-dark text-decoration-none">3</a></td>
-                                        <td>Producto Seleccionado</td>
-                                        <td>12.00</td>
-                                        <td>2</td>
-                                        <td>aceites</td>
-                                        <td>25/09/2021</td>
-                                        <td>25/09/2021</td>
-                                        <td>
-                                            <a href="" class="btn btn-danger"><i class="far fa-minus-square"></i></a>
-                                            <a href="" class="btn btn-primary"><i class="far fa-edit"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="" class="text-dark text-decoration-none">4</a></td>
-                                        <td>Producto Seleccionado</td>
-                                        <td>12.00</td>
-                                        <td>2</td>
-                                        <td>aceites</td>
-                                        <td>25/09/2021</td>
-                                        <td>25/09/2021</td>
-                                        <td>
-                                            <a href="" class="btn btn-danger"><i class="far fa-minus-square"></i></a>
-                                            <a href="" class="btn btn-primary"><i class="far fa-edit"></i></a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                    <p class="font-weight-bold">Lista de Productos Solicitados</p>
+                    <table class="table" id="dataTable" width="100%" cellspacing="0">
+                        <thead class="text-center bg-danger text-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Cod. Producto</th>
+                                <th>Producto</th>
+                                <th>Cantidad Retiro</th>
+                                <th>Categoria</th>
+                                <th>Fecha Retiro</th>
+                                <th>Encargado</th>
+                                <th>Accion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="" class="text-dark text-decoration-none">1</a></td>
+                                <td>COD0001</td>
+                                <td>Producto Seleccionado</td>
+                                <td>20</td>
+                                <td>Aceites</td>
+                                <td><?= date("d-M-Y")?></td>
+                                <td><?=$_SESSION['usuario']?></td>
+                                <td>
+                                    <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                    <a href="" class="btn btn-primary"><i class="far fa-edit"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a href="" class="text-dark text-decoration-none">2</a></td>
+                                <td>COD0001</td>
+                                <td>Producto Seleccionado</td>
+                                <td>20</td>
+                                <td>Aceites</td>
+                                <td><?= date("d-M-Y")?></td>
+                                <td><?=$_SESSION['usuario']?></td>
+                                <td>
+                                    <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                    <a href="" class="btn btn-primary"><i class="far fa-edit"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a href="" class="text-dark text-decoration-none">3</a></td>
+                                <td>COD0001</td>
+                                <td>Producto Seleccionado</td>
+                                <td>20</td>
+                                <td>Aceites</td>
+                                <td><?= date("d-M-Y")?></td>
+                                <td><?=$_SESSION['usuario']?></td>
+                                <td>
+                                    <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                    <a href="" class="btn btn-primary"><i class="far fa-edit"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a href="" class="text-dark text-decoration-none">4</a></td>
+                                <td>COD0001</td>
+                                <td>Producto Seleccionado</td>
+                                <td>20</td>
+                                <td>Aceites</td>
+                                <td><?= date("d-M-Y")?></td>
+                                <td><?=$_SESSION['usuario']?></td>
+                                <td>
+                                    <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                    <a href="" class="btn btn-primary"><i class="far fa-edit"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -153,7 +143,7 @@
                     </div>                    
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">Registrar</button>
+                    <button type="submit" class="btn btn-success">Efectuar Pedido</button>
                 </div>
             </div>
         </div>
