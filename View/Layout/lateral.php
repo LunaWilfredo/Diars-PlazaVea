@@ -72,7 +72,7 @@
                         <h6 class="collapse-header">Opciones de Almacen:</h6>
                         <a class="collapse-item" href="body.php?pagina=listaProductos">Consultar Productos</a>
                         <a class="collapse-item" href="body.php?pagina=retiroAlmacen">Generar Orden Abast.</a>
-                        <a class="collapse-item" href="body.php?pagina=pedidosProveedor">Pedidos Proveedor</a>
+                        <a class="collapse-item" href="body.php?pagina=pedidosProveedor">Generar Request</a>
                     </div>
                 </div>
             </li>
@@ -98,7 +98,8 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opciones de Proveedor:</h6>
                         <a class="collapse-item" href="body.php?pagina=generarCotizacion">Generador de Cotizacion</a>
-                        <a class="collapse-item" href="body.php?pagina=cotizacionesGeneradas">Cotizaciones Generadas</a>                       
+                        <a class="collapse-item" href="body.php?pagina=cotizacionesGeneradas">Cotizaciones Generadas</a>
+                        <a class="collapse-item" href="body.php?pagina=enviarFacturas">Enviar Facturas</a>                     
                     </div>
                 </div>
             </li>
