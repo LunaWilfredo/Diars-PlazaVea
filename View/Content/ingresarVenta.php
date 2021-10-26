@@ -42,28 +42,28 @@
                                 <td>Producto Seleccionado</td>
                                 <td>4</td>
                                 <td>12.00</td>
-                                <td><a href="" class="btn btn-danger"><i class="far fa-minus-square"></i></a></td>
+                                <td><a href="" class="btn btn-danger"><i class="far fa-trash"></i></a></td>
                             </tr>
                             <tr>
                                 <td><a href="" class="text-dark text-decoration-none">2</a></td>
                                 <td>Producto Seleccionado</td>
                                 <td>4</td>
                                 <td>12.00</td>
-                                <td><a href="" class="btn btn-danger"><i class="far fa-minus-square"></i></a></td>
+                                <td><a href="" class="btn btn-danger"><i class="far fa-trash"></i></a></td>
                             </tr>
                             <tr>
                                 <td><a href="" class="text-dark text-decoration-none">3</a></td>
                                 <td>Producto Seleccionado</td>
                                 <td>4</td>
                                 <td>12.00</td>
-                                <td><a href="" class="btn btn-danger"><i class="far fa-minus-square"></i></a></td>
+                                <td><a href="" class="btn btn-danger"><i class="far fa-trash"></i></a></td>
                             </tr>
                             <tr>
                                 <td><a href="" class="text-dark text-decoration-none">4</a></td>
                                 <td>Producto Seleccionado</td>
                                 <td>4</td>
                                 <td>12.00</td>
-                                <td><a href="" class="btn btn-danger"><i class="far fa-minus-square"></i></a></td>
+                                <td><a href="#!" class="btn btn-danger"><i class="far fa-trash"></i></a></td>
                             </tr>
                         </tbody>
                     </table>
