@@ -51,6 +51,15 @@
                                             <input type="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Contraseña" name="userpassword">
                                         </div>
+                                        <div class="form-group">
+                                            <select name="userrol" id="" value="" class="form-control">
+                                                <option value="0">Selecionar</option>
+                                                <option value="1">Administrador</option>
+                                                <option value="2">Tienda</option>
+                                                <option value="3">Almacen</option>
+                                                <option value="4">Proveedor</option>
+                                            </select>
+                                        </div>
                                         
                                         <!-- <a href="body.php" >
                                             
@@ -84,11 +93,12 @@
 </html>
 <?php
 if(isset($_POST) && $_POST != null){
-$usuario = $_POST['username'];
-$password = $_POST['userpassword'];
+    $usuario = $_POST['username'];
+    $password = $_POST['userpassword'];
+    $rol = $_POST['userrol'];
 
-$login = new LoginController;
-$login -> login($usuario,$password); 
+    $login = new LoginController;
+    $login -> login($usuario,$password,$rol); 
 
     if($login == 'ok' && $login != null){
         echo '
@@ -107,5 +117,6 @@ $login -> login($usuario,$password);
         </div>
         ';
     }
+    var_dump($login);
 }
 ?>

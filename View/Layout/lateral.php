@@ -24,7 +24,7 @@
                 <span>Inicio</span></a>
             </li>
 
-            <?php if($_SESSION['rol']=='tienda' || $_SESSION['rol']=='administrador'):?>
+            <?php if($_SESSION['rol']=='2' || $_SESSION['rol']=='1'):?>
             <!-- Divider -->
             <hr class="sidebar-divider">
             <!-- Heading -->
@@ -50,7 +50,7 @@
                 </div>
             </li>
             <?php endif;?>
-            <?php if($_SESSION['rol'] =='almacen' || $_SESSION['rol']=='administrador'):?>
+            <?php if($_SESSION['rol'] =='3' || $_SESSION['rol']=='1'):?>
             <!-- Divider -->
             <hr class="sidebar-divider">
             
@@ -80,7 +80,7 @@
                 </div>
             </li>
             <?php endif;?>
-            <?php if($_SESSION['rol'] =='proveedor' || $_SESSION['rol']=='administrador'):?>
+            <?php if($_SESSION['rol'] =='4' || $_SESSION['rol']=='1'):?>
             <!-- Divider -->
             <hr class="sidebar-divider">
             
@@ -206,9 +206,9 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a href="#!" class="dropdown-item"><?=$_SESSION['rol']?></a>
+                                <!-- <a href="#!" class="dropdown-item"></a> -->
 
-                                <div class="dropdown-divider"></div> 
+                                <!-- <div class="dropdown-divider"></div>  -->
 
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
