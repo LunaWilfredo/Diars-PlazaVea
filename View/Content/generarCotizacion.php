@@ -19,7 +19,7 @@
                         </div>
                         <div class="col-lg col-md col-sm d-flex justify-content-end">
                             <h6 class="m-2 text-dark">Total: <span class="text-primary">12.00</span></h6>
-                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#registrarProductos">
+                            <button type="submit" class="btn btn-warning">
                                 <i class="fas fa-save"></i> Guardar Cotizacion
                             </button>
                         </div>

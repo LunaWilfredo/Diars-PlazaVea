@@ -1,44 +1,82 @@
 <section class="">
     <form action="" method="post">
         <div class="container-fluid">
-            <div class="row my-2 mb-2">
+            <div class="row">
                 <!-- Title -->
-                <div class="col-lg-12 text-center py-4">
-                    <div class="mx-5 px-5 py-2">
+                <div class="col-lg-12 text-center">
+                    <div class="py-2">
                         <h1 class="border-botton">Generar Orden Devolucion</h1>
                     </div>
                 </div>
                 <!-- Body content -->
-                <div class="col-lg">
-                    <!-- Title -->
-                    <p class="text-center my-2 mt-5">Registro de Datos</p>
-                    <!-- Registro de producto entregado por cliente -->
-                    <div class="text-left mb-5">
-                        <p class="lead">Codigo de Comprobante de Pago:</p>
-                        <input type="text" class="rounded text-center w-100 mb-2" placeholder="Codigo de comprobante">
-                        <p class="lead">Fecha de Devolucion:</p>
-                        <input type="text" class="rounded text-center w-100 mb-2" name="fechad" value="30/09/2021" readonly>
-                        <p class="lead">Local: <span class="font-weight-bold">Comas</span></p>
-                        <p class="lead">Caja: <span class="font-weight-bold">007</span></p>
-                        <h2 class="h6 my-2 text-dark">Descripcion de motivo</h1>
-                        <textarea name="" id="" cols="80" rows="5" value="" class="border p-2" placeholder="En esta area escriba el motivo del cambio / devolucion del producto o productos registrados "></textarea>
-                        <label for="monto">Monto(s/.):</label>
-                        <input type="text" value="" name="" class="form-control" placeholder="Monto de Devolucion">
-                    </div>
-                </div>
-                <div class="col-lg ">
-                    <!-- Boton de accion -->
-                    <div class="text-center mt-5 mb-2">
-                        <button type="button" class="btn btn-danger btn-rounded btn-lg" data-toggle="modal" data-target="#confirmacion">
+                <div class="col-lg-12 d-flex">
+                    <div class="mr-2">
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmacion">
                             <i class="fas fa-barcode"></i> Efectuar Devolucion
                         </button>
                     </div>
-                    <div class="text-center">
-                        <!-- Button trigger modal -->
+                    <div class="">
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#refund">
-                        Imprimir Refund
+                            Imprimir Refund
                         </button>
                     </div>
+                </div>
+                <div class="col-lg">
+                    <!-- Title -->
+                    <p class="text-center my-2">Registro de Datos</p>
+                    <!-- Registro de producto entregado por cliente -->
+                    <div class="row d-flex">
+                        <div class="col-lg">
+                            <label for="">Codigo de Comprobante de Pago:</label>
+                            <input type="text" class="form-control" placeholder="Codigo de comprobante">
+                            <label for="">Fecha de Devolucion:</label>
+                            <input type="text" class="form-control" name="fechad" value="30/09/2021" readonly>
+                        </div>
+                        <div class="col-lg">
+                            <label for="">Local :</label>
+                            <input type="text" class="form-control" name="" value="Comas" readonly>
+                            <label for="">Cajero :</label>
+                            <input type="text" class="form-control" name="" value="<?=$_SESSION['usuario']?>" readonly>
+                            
+                        </div>
+                        <div class="col-lg">
+                            <label for="">Descripcion de motivo</label>
+                            <textarea name="" id="" cols="30" rows="4" value="" class="border p-2" placeholder="En esta area escriba el motivo devolucion del producto o productos"></textarea>
+                        </div>
+                        <div class="col-lg">
+                            <label for="monto">Monto(s/.):</label>
+                            <input type="text" value="" name="" class="form-control" placeholder="Monto de Devolucion">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    Vista Previa de Orden de devolucion
+                </div>
+                <div class="col-lg">
+                    <table class="table" id="dataTable" width="100%" cellspacing="0">
+                        <thead class="text-center bg-danger text-light">
+                            <tr>
+                                <th>Comprobante</th>
+                                <th>Fecha Devolucion</th>
+                                <th>Local</th>
+                                <th>Cajero</th>
+                                <th>Motivo</th>
+                                <th>Monto</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <tr>
+                                <td>COMP00001</td>
+                                <td><?= date('d-M-Y')?></td>
+                                <td>Comas</td>
+                                <td>12345678</td>
+                                <td>No me gusto producto</td>
+                                <td>80.00</td>
+                            </tr>       
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
