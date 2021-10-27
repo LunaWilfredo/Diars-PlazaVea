@@ -1,167 +1,119 @@
 <section class="">
+    <form action="" method="post">
         <div class="container-fluid">
-            <div class="row my-2 mb-2">
+            <div class="row">
                 <!-- Title -->
-                <div class="col-lg-12 col-md-12 col-xs-12 text-center py-4">
-                    <div class="mx-5 px-5 py-2">
+                <div class="col-lg-12 col-md-12 col-ms-12 text-center">
+                    <div class="py-2">
                         <h1 class="border-botton">Generar Exchange</h1>
                     </div>
                 </div>
                 <!-- Body content -->
-                <div class="col-lg-3 col-md col-sm">
-                    <!-- Title -->
-                    <!-- <p class="text-center my-2">Producto</p> -->
-                    <!-- Registrar Productos -->
-                    <div class="form-row">
-                        <div class="col-md-12 col-sm-12 mb-3">
+                <div class="col-lg-12 col-md-12 col-sm-12 py-2">
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#terminosModal">
+                        Ejecutar
+                    </button>
+                    <a href="" class="text-secondary">Imprimir Exchange</a>
+                </div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="row">
+                        <div class="col-lg col-md col-sm">
                             <form action="" method="post">
-                                <label for="codigoproducto">N° Comprobante</label>
+                                <label for="comprobante">N° Comprobante</label>
                                 <input type="text" class="form-control text-center" name="" value="" placeholder="COMP00000">
                                 <label for="codigoproducto">Correo:</label>
                                 <input type="text" class="form-control text-center" name="" value="" placeholder="correo@mail.com">
                             </form>
-                        </div>
-
-                        <div class="col-md-4">
-                            <label for="codigoproducto">Cliente:</label>
-                        </div>
-                        <div class="col-md-8">
-                            <p class="">12345678</p>
-                        </div>
-
-                        <div class="col-md-12">
+                        </div> 
+                        <div class="col-lg col-md col-sm">
                             <label for="codigoproducto">Descripcion de Compra:</label>
-                        </div>
-                        <div class="col-md-12">
                             <ol class="text-primary">
-                                <li class="">Aceite SAO</li>
-                                <li class="">Leche Gloria</li>
+                                <li class="lead">Aceite SAO</li>
+                                <li class="lead">Leche Gloria</li>
                             </ol>
-                        </div>
-                            
-                        <div class="col-md-6">
-                            <label for="codigoproducto">Forma de Pago:</label>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="">Tarjeta Debito</p>
                         </div>
                     </div>                   
                 </div>
 
-                <div class="col-lg col-md col-xs border-left-danger text-center">
-                        <p class="font-weight-bold">Productos de Cambio</p>
-                        <div class="container-fluid">
-                            <form action="" method="post">
-                                <table class="table-responsive table" id="dataTable" width="100%" cellspacing="0">
-                                    <thead class="text-center bg-danger text-light">
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Codigo</th>
-                                            <th>Descripcion</th>
-                                            <th>Cantidad</th>
-                                            <th>Categoria</th>
-                                            <th>Accion</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <a href="" class="text-dark text-decoration-none">1</a>
-                                            </td>
-                                            <td>000001</td>
-                                            <td>Producto Seleccionado</td>
-                                            <td>
-                                                2
-                                                <div class="form-row">
-                                                    <div class="col-12">
-                                                        <input type="text" class="form-control text-center" name="" value="2">
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>aceites</td>
-                                            <td>
-                                                <a href="" class="btn btn-danger"><i class="far fa-minus-square"></i></a>
-                                                <a href="" class="btn btn-primary"><i class="far fa-edit"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <a href="" class="text-dark text-decoration-none">1</a>
-                                            </td>
-                                            <td>000001</td>
-                                            <td>Producto Seleccionado</td>
-                                            <td>
-                                                2
-                                                <div class="form-row">
-                                                    <div class="col-12">
-                                                        <input type="text" class="form-control text-center" name="" value="2">
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>aceites</td>
-                                            <td>
-                                                <a href="" class="btn btn-danger"><i class="far fa-minus-square"></i></a>
-                                                <a href="" class="btn btn-primary"><i class="far fa-edit"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <a href="" class="text-dark text-decoration-none">1</a>
-                                            </td>
-                                            <td>000001</td>
-                                            <td>Producto Seleccionado</td>
-                                            <td>
-                                                2
-                                                <div class="form-row">
-                                                    <div class="col-12">
-                                                        <input type="text" class="form-control text-center" name="" value="2">
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>aceites</td>
-                                            <td>
-                                                <a href="" class="btn btn-danger"><i class="far fa-minus-square"></i></a>
-                                                <a href="" class="btn btn-primary"><i class="far fa-edit"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <a href="" class="text-dark text-decoration-none">1</a>
-                                            </td>
-                                            <td>000001</td>
-                                            <td>Producto Seleccionado</td>
-                                            <td>
-                                                2
-                                                <div class="form-row">
-                                                    <div class="col-12">
-                                                        <input type="text" class="form-control text-center" name="" value="2">
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>aceites</td>
-                                            <td>
-                                                <a href="" class="btn btn-danger"><i class="far fa-minus-square"></i></a>
-                                                <a href="" class="btn btn-primary"><i class="far fa-edit"></i></a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </form>
+                <div class="col-lg col-md col-sm text-center mt-2">
+                    <p class="font-weight-bold">Productos de Cambio</p>
+                    <div class="col-sm col-md col-lg mb-2">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Codigo Producto</span>
+                            </div>
+                            <input type="text" aria-label="First name" class="form-control">
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ListaProductos">
+                                Buscar
+                            </button>
                         </div>
-                </div>
-                <div class="col-lg-2">
-                    <!-- Boton de accion -->
-                    <div class="text-center">
-                        <button type="button" class="btn btn-danger btn-rounded btn-lg w-100" data-toggle="modal" data-target="#terminosModal">
-                            Ejecutar
-                        </button>
                     </div>
-                    <div class="text-center">
-                        <a href="" class=" text-secondary">Imprimir Exchange</a>
-                    </div>
+
+                    <form action="" method="post">
+                        <table class="table" id="dataTable" width="100%" cellspacing="0">
+                            <thead class="text-center bg-danger text-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Codigo</th>
+                                    <th>Descripcion</th>
+                                    <th>Cantidad</th>
+                                    <th>Categoria</th>
+                                    <th>Accion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a href="" class="text-dark text-decoration-none">1</a></td>
+                                    <td>000001</td>
+                                    <td>Producto Seleccionado</td>
+                                    <td>2</td>
+                                    <td>aceites</td>
+                                    <td>
+                                        <a href="" class="btn btn-danger"><i class="far fa-minus-square"></i></a>
+                                        <a href="" class="btn btn-primary"><i class="far fa-edit"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><a href="" class="text-dark text-decoration-none">1</a></td>
+                                    <td>000001</td>
+                                    <td>Producto Seleccionado</td>
+                                    <td>2</td>
+                                    <td>aceites</td>
+                                    <td>
+                                        <a href="" class="btn btn-danger"><i class="far fa-minus-square"></i></a>
+                                        <a href="" class="btn btn-primary"><i class="far fa-edit"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><a href="" class="text-dark text-decoration-none">1</a></td>
+                                    <td>000001</td>
+                                    <td>Producto Seleccionado</td>
+                                    <td>2</td>
+                                    <td>aceites</td>
+                                    <td>
+                                        <a href="" class="btn btn-danger"><i class="far fa-minus-square"></i></a>
+                                        <a href="" class="btn btn-primary"><i class="far fa-edit"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><a href="" class="text-dark text-decoration-none">1</a></td>
+                                    <td>000001</td>
+                                    <td>Producto Seleccionado</td>
+                                    <td>2</td>
+                                    <td>aceites</td>
+                                    <td>
+                                        <a href="" class="btn btn-danger"><i class="far fa-minus-square"></i></a>
+                                        <a href="" class="btn btn-primary"><i class="far fa-edit"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
                 </div>
             </div>
         </div>
+    </form>
 </section>
 
 <!-- MODAL -->
@@ -198,6 +150,55 @@
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-success">Aceptar</button>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Busqueda de productos -->
+<div class="modal fade" id="ListaProductos" tabindex="-1" aria-labelledby="ListaProductos" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Lista de Productos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario de busqueda de productos -->
+                <form action="" class="form" method="post">
+                    <div class="table">
+                        <table class="table" id="dataTable" width="100%" cellspacing="0">
+                            <thead class="text-center bg-danger text-light">
+                                <tr>
+                                    <th>Codigo</th>
+                                    <th>Descripcion Producto</th>
+                                    <th>Cantidad</th>
+                                    <th>Añadir</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>0001</td>
+                                    <td>Arroz costeño</td>
+                                    <td>
+                                        <input type="text" class="form-control" name="" value="1" maxlength="3" minlength="1">
+                                    </td>
+                                    <td class="text-center">
+                                        <button class="btn btn-danger btn-sm">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </td>
+                                </tr>       
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            <!-- Fin de formulario de buesqueda de productos -->
+            </div>
+            <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            </div> -->
         </div>
     </div>
 </div>

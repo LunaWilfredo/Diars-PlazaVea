@@ -1,3 +1,10 @@
+<?php 
+    require_once './Controller/pagosCajaController.php';
+
+    if(isset($_POST['btnNuevaVenta'])){
+        $venta = PagosCajaController :: nuevaVenta();
+    }
+?>
 <section class="">
     <form action="" method="post">
         <div class="container-fluid g-0" style="height:750px ; width:84.9vw">

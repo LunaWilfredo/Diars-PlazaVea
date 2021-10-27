@@ -2,11 +2,12 @@
 
 class PagosCajaController{
 
-    public function buscarProducto($producto){
-        if(isset($_POST['bproducto']) && $_POST['bproducto'] != null){
-            $producto = 'producto buscado';
+    static public function nuevaVenta(){
+        
+        if(isset($_POST['btnNuevaVenta'])){
+            header('Location : body.php?pagina=ingresarVenta');
         }
-        return $producto;
+        return ;
     }
 }
 

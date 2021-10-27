@@ -117,6 +117,5 @@ if(isset($_POST) && $_POST != null){
         </div>
         ';
     }
-    var_dump($login);
 }
 ?>

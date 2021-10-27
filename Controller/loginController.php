@@ -11,15 +11,6 @@ Class LoginController{
         if(isset($_POST['username']) && isset($_POST['userpassword']) && isset($_POST['userrol'])){
             $respuesta = LoginModel::login($user,$password,$rol);
             if($respuesta == 'ok'){
-            // if($user == 'administrador' && $password == '123456' || $user == 'tienda' && $password == '123456' || $user == 'almacen' && $password == '123456' || $user == 'proveedor' && $password == '123456'){
-            //     session_start();
-            //     $usuario = $_SESSION['usuario'] = $user;
-            //     
-            // }
-            // $role = $user;
-            // if($user == $user && $role == $role){
-            //     $rol = $_SESSION['rol'] = $role; 
-            // }
                 session_start();
                 $_SESSION['usuario'] = $user;
                 $_SESSION['rol'] = $rol;
@@ -27,7 +18,6 @@ Class LoginController{
             }
         }
         return $respuesta;
-        var_dump($respuesta);
     }
 
     public function cerrarSesion($cerrar){

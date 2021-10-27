@@ -11,8 +11,7 @@ class LoginModel{
             $conexion = 'ok';
         }
         return $conexion;
-        var_dump($conexion);
-
+        
         $conexion->close();
         $conexion = null;
     }
