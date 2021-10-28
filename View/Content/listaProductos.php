@@ -122,7 +122,7 @@
                 </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#confirmacionVenta">Registrar Producto</button>
       </div>
     </div>
