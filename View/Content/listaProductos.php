@@ -1,3 +1,8 @@
+<?php 
+    $listar = AlmacenController::listarProductos();
+    $categorias = AlmacenController::listaCategorias();
+
+?>
 <section class="">
     <form action="" method="post">
         <div class="container-fluid">
@@ -12,7 +17,9 @@
                     <form action="" method="post">
                         <div class="row border py-2">
                             <div class="col-lg col-md col-sm d-flex">
-                                <input type="text" class="form-control m-2" name="" value="" placeholder="Ingresar codigo de Producto,stock o fecha">
+                                <!-- codigo de busqueda de producto -->
+                                <input type="text" class="form-control m-2" name="codigoProducto" value="" placeholder="Ingresar codigo de Producto,stock o fecha">
+                                <!-- boton de buscar -->
                                 <button type="button" class="btn btn-success p-2">
                                     <i class="fas fa-search"></i>
                                 </button>
@@ -35,47 +42,26 @@
                                 <th>Descripcion</th>
                                 <th>Stock</th>
                                 <th>Categoria</th>
-                                <th>Fecha Registro</th>
                                 <th>Fecha Vencimiento</th>
+                                <th>Fecha Registro</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <?php  
+                                $i=0; 
+                                foreach($listar as $lista => $value):
+                                $i++;
+                            ?>
                             <tr>
-                                <td><a href="" class="text-dark text-decoration-none">1</a></td>
-                                <td>LT001</td>
-                                <td>Producto Seleccionado</td>
-                                <td>12</td>
-                                <td>aceites</td>
-                                <td>25/09/2021</td>
-                                <td>25/09/2021</td>
-                            </tr>
-                            <tr>
-                                <td><a href="" class="text-dark text-decoration-none">2</a></td>
-                                <td>LT001</td>
-                                <td>Producto Seleccionado</td>
-                                <td>12</td>
-                                <td>aceites</td>
-                                <td>25/09/2021</td>
-                                <td>25/09/2021</td>
-                            </tr>
-                            <tr>
-                                <td><a href="" class="text-dark text-decoration-none">3</a></td>
-                                <td>LT001</td>
-                                <td>Producto Seleccionado</td>
-                                <td>12</td>
-                                <td>aceites</td>
-                                <td>25/09/2021</td>
-                                <td>25/09/2021</td>
-                            </tr>
-                            <tr>
-                                <td><a href="" class="text-dark text-decoration-none">4</a></td>
-                                <td>LT001</td>
-                                <td>Producto Seleccionado</td>
-                                <td>12</td>
-                                <td>aceites</td>
-                                <td>25/09/2021</td>
-                                <td>25/09/2021</td>
-                            </tr>                                    
+                                <td><?=$i?></td>
+                                <td><?=$value['lote']?></td>
+                                <td><?=$value['nombre_producto']?></td>
+                                <td><?=$value['cantidad']?></td>
+                                <td><?=$value['categoria']?></td>
+                                <td><?=$value['fecha_vencimiento']?></td>
+                                <td><?=$value['fecha_registro']?></td>
+                            </tr> 
+                            <?php endforeach; ?>                                  
                         </tbody>
                     </table>   
                 </div>
@@ -119,7 +105,12 @@
                     <div class="col-lg col-md col-sm">
                         <div class="form-group">
                             <label for="local">Categoria</label>
-                            <input type="text" class="form-control" id="local" value="Comas" name="" >
+                            <select name="" id="" value="" class="form-control">
+                                    <option value="">Seleccionar</option>
+                                <?php foreach($categorias as $key => $cat): ?>
+                                    <option value="<?=$cat['id']?>"><?=$cat['nombre_categoria']?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                     </div>
                     <div class="col-lg col-md col-sm">
