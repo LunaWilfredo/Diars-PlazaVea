@@ -1,5 +1,5 @@
 CREATE DATABASE diars;
-USE diars;
+diarsUSE diars;
 
 /*tabla de usuarios*/
 
@@ -85,11 +85,20 @@ CREATE TABLE productos(
 	fecha_vencimiento VARCHAR(20) NOT NULL ,
 	fecha_registro VARCHAR(20) NOT NULL ,
 	fk_categoria INT NOT NULL ,
-	CONSTRAINT fk_categoria FOREIGN KEY (fk_categoria) REFERENCES categorias(id) 
+	CONSTRAINT fk_categoria FOREIGN KEY (fk_categoria) REFERENCES categorias(id)
 )ENGINE INNODB ;
 
 INSERT INTO productos (nombre_producto,marca,lote,cantidad,fecha_vencimiento,fecha_registro,fk_categoria) 
-VALUES ('Gaseosa','Coca Cola','L0001',20,'18/10/2021',CURDATE(),4);
+VALUES ('Gaseosa','Coca Cola','L0001',20,'18-10-2021',CURDATE(),4);
+
+INSERT INTO productos (nombre_producto,marca,lote,cantidad,fecha_vencimiento,fecha_registro,fk_categoria) 
+VALUES ('Leche','Gloria','L0012',20,'28-10-2021',CURDATE(),2);
+
+INSERT INTO productos (nombre_producto,marca,lote,cantidad,fecha_vencimiento,fecha_registro,fk_categoria) 
+VALUES ('Galletas','ChocoSoda','L0021',20,'30-10-2021',CURDATE(),1);
+
+INSERT INTO productos (nombre_producto,marca,lote,cantidad,fecha_vencimiento,fecha_registro,fk_categoria) 
+VALUES ('Pan','Bimbo','L0025',10,'10-11-2021',CURDATE(),5);
 
 SELECT * FROM productos
 
