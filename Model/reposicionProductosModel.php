@@ -15,9 +15,13 @@ Class AlmacenModel{
         $conexion = NULL;
     }
 
-    static public function listarProductos($tabla){
-        $sql="SELECT p.*,c.nombre_categoria AS 'categoria' FROM $tabla p INNER JOIN categorias c 
-        ON p.fk_categoria = c.id";
+    static public function listarProductos($tabla,$producto){
+        // condicion de busqueda
+        if(isset($producto) && $producto != NULL){
+            $sql="SELECT p.*,c.nombre_categoria AS 'categoria' FROM $tabla p INNER JOIN categorias c ON p.fk_categoria = c.id WHERE p.nombre_producto = '$producto' or p.lote = '$producto' or c.nombre_categoria = '$producto' or p.fecha_vencimiento = '$producto' ";
+        }else{
+            $sql="SELECT p.*,c.nombre_categoria AS 'categoria' FROM $tabla p INNER JOIN categorias c ON p.fk_categoria = c.id";
+        }
 
         $conexion = Conexion::conectar()->prepare($sql);
         $conexion->execute();
@@ -27,14 +31,17 @@ Class AlmacenModel{
         $conexion = NULL;
     }
 
-    static public function estadoProductos($tabla){
-        $sql="SELECT * FROM $tabla";
+    static public function registrarProductos($tabla,$datos){
+        $sql="";
 
         $conexion = Conexion::conectar()->prepare($sql);
-        $conexion->execute();
-        return $conexion->fetchAll();
+        if($conexion->execute()){
+            return "ok";
+        }else{
+            print_r(Conexion::conectar()->errorInfo());
+        }
 
-        $conexion->close;
+        $conexion->close();
         $conexion = NULL;
     }
 

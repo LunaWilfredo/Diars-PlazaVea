@@ -1,3 +1,6 @@
+<?php
+    $listar = AlmacenController::listarProductos();
+?>
 <section class="">
     <form action="" method="post">
         <div class="container-fluid">
@@ -12,7 +15,7 @@
                     <form action="" method="post">
                         <div class="row border py-2">
                             <div class="col-lg col-md col-sm d-flex">
-                                <input type="text" class="form-control m-2" name="" value="" placeholder="Ingresar codigo de Producto,stock o fecha">
+                                <input type="text" class="form-control m-2" name="buscarProducto" value="" placeholder="Ingresar codigo de Producto,stock o fecha">
                                 <button type="button" class="btn btn-success p-2">
                                     <i class="fas fa-search"></i>
                                 </button>
@@ -30,117 +33,53 @@
                                 <th>Descripcion</th>
                                 <th>Stock</th>
                                 <th>Categoria</th>
-                                <th>Fecha Registro</th>
                                 <th>Fecha Vencimiento</th>
+                                <th>Fecha Registro</th>
                                 <th>Estado</th>
                                 <th>Accion</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <?php 
+                                $i = 0;
+                                foreach($listar as $key => $producto):
+                                    $i++;
+                            ?>
                             <tr>
-                                <td><a href="" class="text-dark text-decoration-none">1</a></td>
-                                <td>LT001</td>
-                                <td>Producto Seleccionado</td>
-                                <td>12</td>
-                                <td>aceites</td>
-                                <td>25/09/2021</td>
-                                <td>25/09/2021</td>
+                                <td><a href="" class="text-dark text-decoration-none"><?=$i?></a></td>
+                                <td><?=$producto['lote']?></td>
+                                <td><?=$producto['nombre_producto']?></td>
+                                <td><?=$producto['cantidad']?></td>
+                                <td><?=$producto['categoria']?></td>
+                                <td><?=$producto['fecha_vencimiento']?></td>
+                                <td><?=$producto['fecha_registro']?></td>
                                 <td>
-                                    <!-- Buen estado -->
-                                    <div class="alert alert-success" role="alert">
-                                        Buen Estado
-                                    </div>
-                                    <!-- Por vencer -->
-                                    <div class="alert alert-warning" role="alert">
-                                        Por vencer
-                                    </div>
-                                    <!-- Vencido -->
-                                    <div class="alert alert-danger" role="alert">
-                                        Vencido
-                                    </div>
+                                    <?php
+                                    $fecha_vencimiento = strtotime($producto['fecha_vencimiento']); 
+                                    $fecha_actual = strtotime(date("d-m-Y"));
+
+                                    if( $fecha_vencimiento <= $fecha_actual): ?>
+                                        <!-- Vencido -->
+                                        <div class="alert alert-danger" role="alert">
+                                            Vencido
+                                        </div>
+                                    <?php elseif($fecha_vencimiento > $fecha_actual && $fecha_vencimiento == strtotime("+2 day",$fecha_actual)):?>
+                                        <!-- Por vencer -->
+                                        <div class="alert alert-warning" role="alert">
+                                            Por vencer
+                                        </div>
+                                    <?php elseif($fecha_vencimiento > $fecha_actual):?>
+                                        <!-- Buen estado -->
+                                        <div class="alert alert-success" role="alert">
+                                            Buen Estado
+                                        </div>
+                                    <?php endif;?>
                                 </td>
                                 <td>
                                     <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></i></a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td><a href="" class="text-dark text-decoration-none">2</a></td>
-                                <td>LT001</td>
-                                <td>Producto Seleccionado</td>
-                                <td>12</td>
-                                <td>aceites</td>
-                                <td>25/09/2021</td>
-                                <td>25/09/2021</td>
-                                <td>
-                                    <!-- Buen estado -->
-                                    <div class="alert alert-success" role="alert">
-                                        Buen Estado
-                                    </div>
-                                    <!-- Por vencer -->
-                                    <div class="alert alert-warning" role="alert">
-                                        Por vencer
-                                    </div>
-                                    <!-- Vencido -->
-                                    <div class="alert alert-danger" role="alert">
-                                        Vencido
-                                    </div>
-                                </td>
-                                <td>
-                                    <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a href="" class="text-dark text-decoration-none">3</a></td>
-                                <td>LT001</td>
-                                <td>Producto Seleccionado</td>
-                                <td>12</td>
-                                <td>aceites</td>
-                                <td>25/09/2021</td>
-                                <td>25/09/2021</td>
-                                <td>
-                                    <!-- Buen estado -->
-                                    <div class="alert alert-success" role="alert">
-                                        Buen Estado
-                                    </div>
-                                    <!-- Por vencer -->
-                                    <div class="alert alert-warning" role="alert">
-                                        Por vencer
-                                    </div>
-                                    <!-- Vencido -->
-                                    <div class="alert alert-danger" role="alert">
-                                        Vencido
-                                    </div>
-                                </td>
-                                <td>
-                                    <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a href="" class="text-dark text-decoration-none">4</a></td>
-                                <td>LT001</td>
-                                <td>Producto Seleccionado</td>
-                                <td>12</td>
-                                <td>aceites</td>
-                                <td>25/09/2021</td>
-                                <td>25/09/2021</td>
-                                <td>
-                                    <!-- Buen estado -->
-                                    <div class="alert alert-success" role="alert">
-                                        Buen Estado
-                                    </div>
-                                    <!-- Por vencer -->
-                                    <div class="alert alert-warning" role="alert">
-                                        Por vencer
-                                    </div>
-                                    <!-- Vencido -->
-                                    <div class="alert alert-danger" role="alert">
-                                        Vencido
-                                    </div>
-                                </td>
-                                <td>
-                                    <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>                                    
+                            <?php endforeach;?>                                   
                         </tbody>
                     </table>   
                 </div>

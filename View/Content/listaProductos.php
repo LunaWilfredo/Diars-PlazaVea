@@ -1,6 +1,22 @@
 <?php 
-    $listar = AlmacenController::listarProductos();
+    if(isset($_POST['buscar']) && $_POST['buscar'] != NULL){
+        $listar = AlmacenController::listarProductos();
+    }else{
+        $listar = AlmacenController::listarProductos();
+    }
+    
     $categorias = AlmacenController::listaCategorias();
+
+    if(isset($_POST['lote'])){
+        $registro = AlmacenController::registroProductos();
+        if($registro = 'ok'){
+            echo '
+            <div class="alert alert-success" role="alert">
+                Registro Exitoso
+            </div>
+          ';
+        }
+    }
 
 ?>
 <section class="">
@@ -13,14 +29,13 @@
                 </div>
                 <!-- Body content -->
                 <div class="col-lg-12 col-md-12 col-sm-12 pb-2">
-                    <!-- Registrar Productos -->
                     <form action="" method="post">
+                        <!-- Busqueda de producto -->
                         <div class="row border py-2">
                             <div class="col-lg col-md col-sm d-flex">
-                                <!-- codigo de busqueda de producto -->
-                                <input type="text" class="form-control m-2" name="codigoProducto" value="" placeholder="Ingresar codigo de Producto,stock o fecha">
+                                <input type="text" class="form-control m-2" name="buscar" value="" placeholder="Ingresar codigo de Productoa buscar" onclick="submit">
                                 <!-- boton de buscar -->
-                                <button type="button" class="btn btn-success p-2">
+                                <button type="submit" class="btn btn-success p-2">
                                     <i class="fas fa-search"></i>
                                 </button>
                             </div>
@@ -71,60 +86,65 @@
 </section>
 
 <!-- Modal registro Producto -->
-<div class="modal fade" id="registroProducto" tabindex="-1" aria-labelledby="registroProducto" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      <div class="row">
-                    <div class="col-lg col-md col-sm">
-                        <div class="form-group">
-                            <label for="cliente">Lote</label>
-                            <input type="text" class="form-control" id="cliente" name="" placeholder="">
-                        </div>
-                    </div>
-                    <div class="col-lg col-md col-sm">
-                        <div class="form-group">
-                            <label for="operacion">Descripcin</label>
-                            <input type="text" class="form-control" id="operacion" value="" name="">
-                        </div>
-                    </div>
-                    <div class="col-lg col-md col-sm">
-                        <div class="form-group">
-                            <label for="fecha">Cantidad</label>
-                            <input type="text" class="form-control" id="fecha" value="" name="">
-                        </div>
+<form action="" method="post">
+    <div class="modal fade" id="registroProducto" tabindex="-1" aria-labelledby="registroProducto" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Registro de Producto</h5>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-lg col-md col-sm">
+                    <div class="form-group">
+                        <label for="cliente">Lote</label>
+                        <input type="text" class="form-control" id="cliente" name="lote" value="L">
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg col-md col-sm">
-                        <div class="form-group">
-                            <label for="local">Categoria</label>
-                            <select name="" id="" value="" class="form-control">
-                                    <option value="">Seleccionar</option>
+                <div class="col-lg col-md col-sm">
+                    <div class="form-group">
+                        <label for="operacion">Descripcin</label>
+                        <input type="text" class="form-control" id="operacion" value="" name="descripcion">
+                    </div>
+                </div>
+                <div class="col-lg col-md col-sm">
+                    <div class="form-group">
+                        <label for="fecha">Cantidad</label>
+                        <input type="text" class="form-control" id="fecha" value="" name="cantidad">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg col-md col-sm">
+                    <div class="form-group">
+                        <label for="fecha">Marca</label>
+                        <input type="text" class="form-control" id="marca" value="" name="marca">
+                    </div>
+                </div>
+                <div class="col-lg col-md col-sm">
+                    <div class="form-group">
+                        <label for="local">Categoria</label>
+                        <select name="categoria" id="" value="" class="form-control">
+                            <option value="">Seleccionar</option>
                                 <?php foreach($categorias as $key => $cat): ?>
-                                    <option value="<?=$cat['id']?>"><?=$cat['nombre_categoria']?></option>
+                            <option value="<?=$cat['id']?>"><?=$cat['nombre_categoria']?></option>
                                 <?php endforeach; ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-lg col-md col-sm">
-                        <div class="form-group">
-                            <label for="caja">Fecha de Vencimiento</label>
-                            <input type="text" class="form-control" id="caja" value="<?= date('d/m/Y')?>" name="" readonly>
-                        </div>
+                        </select>
                     </div>
                 </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#confirmacionVenta">Registrar Producto</button>
-      </div>
+                <div class="col-lg col-md col-sm">
+                    <div class="form-group">
+                        <label for="caja">Vencimiento</label>
+                        <input type="text" class="form-control" id="caja" value="<?= date('d-m-Y')?>" name="fecha" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-success">Registrar Producto</button>
+        </div>
+        </div>
     </div>
-  </div>
-</div>
+    </div>
+</form>
