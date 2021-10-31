@@ -1,3 +1,17 @@
+    <?php 
+        if(isset($_SESSION['usuario']) && $_SESSION['usuario'] != null){
+            $usuario = $_SESSION['usuario'];
+        
+            $login = LoginController::usuarioLogin($usuario);
+
+        }
+
+        foreach($login as $key => $log){
+             $_SESSION['rol'] = $log['fk_rol'];
+             $_SESSION['nombre_usuario'] = $log['username'];
+        }
+
+    ?>
     <!-- Page Wrapper -->
     <div id="wrapper">
 

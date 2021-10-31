@@ -1,4 +1,37 @@
-<?php require_once 'Controller/loginController.php' ?>
+<?php
+    require_once 'Controller/loginController.php';
+
+    if(isset($_POST) && $_POST != null){
+        $usuario = $_POST['username'];
+        $password = $_POST['userpassword'];
+
+        // Previo a log
+        $comprobacion = LoginController::previoLogin($usuario,$password);
+
+        if($comprobacion >= 1 && $comprobacion != NULL){
+            foreach($comprobacion as $key =>$prev){
+                $user =$prev['username'];
+                $passd=$prev['upassword'];
+            }
+    
+            if($user == $usuario && $passd == $password){
+                echo 'Login correcto';
+                $login = LoginController::login($usuario,$password);
+    
+            }
+        }else{
+            echo '
+            <div class="container">
+                <div class="alert alert-danger" role="alert">
+                    Usuario o contraseña incorrecta!
+                </div>
+            </div>';
+   
+        }
+
+    }
+    
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -51,16 +84,6 @@
                                             <input type="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Contraseña" name="userpassword">
                                         </div>
-                                        <div class="form-group">
-                                            <select name="userrol" id="" value="" class="form-control">
-                                                <option value="0">Selecionar</option>
-                                                <option value="1">Administrador</option>
-                                                <option value="2">Tienda</option>
-                                                <option value="3">Almacen</option>
-                                                <option value="4">Proveedor</option>
-                                            </select>
-                                        </div>
-                                        
                                         <!-- <a href="body.php" >
                                             
                                         </a> -->
@@ -92,30 +115,30 @@
 
 </html>
 <?php
-if(isset($_POST) && $_POST != null){
-    $usuario = $_POST['username'];
-    $password = $_POST['userpassword'];
-    $rol = $_POST['userrol'];
+// if(isset($_POST['username']) && $_POST['username'] != null){
+//     $usuario = $_POST['username'];
+//     $password = $_POST['userpassword'];
+//     $rol = $_POST['userrol'];
 
-    $login = new LoginController;
-    $login -> login($usuario,$password,$rol); 
+    // $login = new LoginController;
+    // $login -> login($usuario,$password,$rol); 
 
-    if($login == 'ok' && $login != null){
-        echo '
-        <div class="container">
-            <div class="alert alert-success" role="alert">
-                Inicio de sesion exitoso
-            </div>
-        </div>
-        ';
-    }else{
-        echo '
-        <div class="container">
-            <div class="alert alert-danger" role="alert">
-                Usuario o contraseña incorrecta!
-            </div>
-        </div>
-        ';
-    }
-}
+    // if($login == 'ok' && $login != null){
+    //     echo '
+    //     <div class="container">
+    //         <div class="alert alert-success" role="alert">
+    //             Inicio de sesion exitoso
+    //         </div>
+    //     </div>
+    //     ';
+    // }else{
+    //     echo '
+    //     <div class="container">
+    //         <div class="alert alert-danger" role="alert">
+    //             Usuario o contraseña incorrecta!
+    //         </div>
+    //     </div>
+    //     ';
+    // }
+// }
 ?>
