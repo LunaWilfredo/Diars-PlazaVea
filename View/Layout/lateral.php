@@ -8,7 +8,7 @@
 
         foreach($login as $key => $log){
              $_SESSION['rol'] = $log['fk_rol'];
-             $_SESSION['nombre_usuario'] = $log['username'];
+             $_SESSION['nombre_usuario'] = $log['uname'];
         }
 
     ?>
@@ -213,7 +213,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?=$_SESSION['usuario']?></span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?=$_SESSION['nombre_usuario']?></span>
                                 <img class="img-profile rounded-circle"
                                     src="Assets/img/undraw_profile.svg">
                             </a>
