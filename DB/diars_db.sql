@@ -110,6 +110,32 @@ SELECT * FROM productos p INNER JOIN categorias c ON p.fk_categoria = c.id
 SELECT p.*,c.nombre_categoria AS 'categoria' FROM productos p INNER JOIN categorias c 
 ON p.fk_categoria = c.id
 
+
+CREATE TABLE pasillos(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+	numero_pasillo INT(2) NOT NULL ,
+	fk_categorias INT NOT NULL ,
+	CONSTRAINT fk_categorias FOREIGN KEY (fk_categorias) REFERENCES categorias(id)
+)ENGINE INNODB ;
+
+INSERT INTO pasillos (numero_pasillo,fk_categorias) VALUES (1,1);
+INSERT INTO pasillos (numero_pasillo,fk_categorias) VALUES (2,2);
+INSERT INTO pasillos (numero_pasillo,fk_categorias) VALUES (3,3);
+INSERT INTO pasillos (numero_pasillo,fk_categorias) VALUES (4,4);
+INSERT INTO pasillos (numero_pasillo,fk_categorias) VALUES (5,5);
+INSERT INTO pasillos (numero_pasillo,fk_categorias) VALUES (6,6);
+INSERT INTO pasillos (numero_pasillo,fk_categorias) VALUES (7,7);
+INSERT INTO pasillos (numero_pasillo,fk_categorias) VALUES (8,8);
+INSERT INTO pasillos (numero_pasillo,fk_categorias) VALUES (9,9);
+INSERT INTO pasillos (numero_pasillo,fk_categorias) VALUES (10,10);
+
+SELECT * FROM pasillos
+
+SELECT pa.numero_pasillo,c.nombre_categoria FROM pasillos pa INNER JOIN categorias c ON pa.fk_categorias = c.id;  
+
+SELECT p.*,c.nombre_categoria,pa.numero_pasillo FROM productos p INNER JOIN categorias c
+ON p.fk_categoria = c.id INNER JOIN pasillos pa ON p.fk_categoria = pa.id
+
 /*---------------------------------*/
 
 SHOW TABLES 

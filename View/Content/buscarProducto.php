@@ -1,3 +1,8 @@
+<?php 
+
+    $lista = CambioDevolucionController::listarProductosPasillos();
+
+?>
 <section class="">
     <form action="" method="post">
         <div class="container-fluid">
@@ -10,7 +15,7 @@
                 </div>
                 <!-- Body content -->
                 <div class="col-lg-12 border px-2 pt-2 text-center">
-                    <!-- Registrar Productos -->
+                    <!-- Buscar Productos -->
                     <form action="" method="post">
                         <div class="form">
                             <div class="row">
@@ -18,7 +23,7 @@
                                     <label for="codigoproducto">Descripcion de Producto</label>
                                 </div>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control text-center w-100" name="" value="" placeholder="Ingresar codigo de Producto">
+                                    <input type="text" class="form-control text-center w-100" name="buscar" value="" placeholder="Ingresar codigo de Producto">
                                 </div>
                                 <div class="col-md-">
                                     <button type="button" class="btn btn-success">
@@ -29,120 +34,59 @@
                         </div>
                     </form> 
                 </div>
-                <div class="col-lg-12 ">
-                    <p class="font-weight-bold text-center pt-2">Lista de Productos Tienda</p>
-                    
-                        <table class=" table text-center px-5" id="dataTable" width="100%" cellspacing="0">
-                            <thead class="text-center bg-danger text-light">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Codigo</th>
-                                    <th>Descripcion</th>
-                                    <th>Marca</th>
-                                    <th>Precio Unitario.(s/.)</th>
-                                    <th>Cantidad</th>
-                                    <th>Categoria</th>
-                                    <th>Fecha Retiro</th>
-                                    <th>Fecha Vencimiento (P)</th>
-                                    <th>Ubicacion</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>001</td>
-                                    <td>Producto Seleccionado</td>
-                                    <td></td>
-                                    <td>12.00</td>
-                                    <td>2</td>
-                                    <td>aceites</td>
-                                    <td>25/09/2021</td>
-                                    <td>25/09/2021</td>
-                                    <td>
-                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ubicacionModal">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>002</td>
-                                    <td>Producto Seleccionado</td>
-                                    <td></td>
-                                    <td>12.00</td>
-                                    <td>2</td>
-                                    <td>aceites</td>
-                                    <td>25/09/2021</td>
-                                    <td>25/09/2021</td>
-                                    <td>
-                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ubicacionModal">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>003</td>
-                                    <td>Producto Seleccionado</td>
-                                    <td></td>
-                                    <td>12.00</td>
-                                    <td>2</td>
-                                    <td>aceites</td>
-                                    <td>25/09/2021</td>
-                                    <td>25/09/2021</td>
-                                    <td>
-                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ubicacionModal">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>004</td>
-                                    <td>Producto Seleccionado</td>
-                                    <td></td>
-                                    <td>12.00</td>
-                                    <td>2</td>
-                                    <td>aceites</td>
-                                    <td>25/09/2021</td>
-                                    <td>25/09/2021</td>
-                                    <td>
-                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ubicacionModal">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <div class="col-lg-12 mt-2">                   
+                    <table class=" table text-center px-5" id="dataTable" width="100%" cellspacing="0">
+                        <thead class="text-center bg-danger text-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Lote</th>
+                                <th>Descripcion</th>
+                                <th>Marca</th>
+                                <th>Cantidad</th>
+                                <th>Categoria</th>
+                                <th>Fecha Vencimiento</th>
+                                <th>
+                                    Ubicacion
+                                    
+                                    <?php if(isset($_POST['btn-pasillo'])):?>     
+                                            <button type="submit" class="btn btn-secondary" name="btn-ocultar">
+                                                <i class="fas fa-eye-slash"></i>
+                                            </button>
+                                    <?php else:?>   
+                                            <button type="submit" class="btn btn-warning" name="btn-pasillo">
+                                                    <i class="fas fa-eye"></i>
+                                            </button>
+                                    <?php endif;?>
 
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php  $i=0;
+                                foreach($lista as $key => $list):
+                                    $i++;
+                            ?>
+                                <tr>
+                                    <td><?=$i?></td>
+                                    <td><?=$list['lote']?></td>
+                                    <td><?=$list['nombre_producto']?></td>
+                                    <td><?=$list['marca']?></td>
+                                    <td><?=$list['cantidad']?></td>
+                                    <td><?=$list['categoria']?></td>
+                                    <td><?=$list['fecha_vencimiento']?></td>
+                                    <td>
+                                    <?php if(isset($_POST['btn-pasillo'])):?>
+                                        Pasillo <?=$list['pasillo']?>
+                                    <?php else:?>
+                                        Oculto
+                                    <?php endif;?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </form>
 </section>
-
-
-<!-- MODAL de visualizacion-->
-
-<div class="modal fade" id="ubicacionModal" tabindex="-1" aria-labelledby="ubicacionModal" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title py-2" id="exampleModalLabel">Ubicacion</h5>
-        <button type="button" class="btn btn-success" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">Ok</span>
-        </button>
-      </div>
-      <div class="modal-body text-center">
-        <table class="table">
-            <thead class="text-center text-light bg-warning">
-                <th>Pasillo</th>
-            </thead>
-            <tbody>
-                <td> 18</td>
-            </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
