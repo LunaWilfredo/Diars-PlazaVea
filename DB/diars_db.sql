@@ -1,5 +1,5 @@
 CREATE DATABASE diars;
-diarsUSE diars;
+USE diars;
 
 /*tabla de usuarios*/
 
@@ -19,16 +19,17 @@ CREATE TABLE usuarios(
 id INT NOT NULL AUTO_INCREMENT,
 username VARCHAR(20) NOT NULL ,
 upassword VARCHAR(12) NOT NULL,
+uname VARCHAR(100) NOT NULL,
 fk_rol INT NOT NULL  ,
 CONSTRAINT  PRIMARY KEY (id),
 CONSTRAINT fk_rol FOREIGN KEY (fk_rol) REFERENCES roles (id)
 )ENGINE INNODB ;
 
-INSERT INTO usuarios(username,upassword,fk_rol) VALUES ('administrador','123456',1);
-INSERT INTO usuarios(username,upassword,fk_rol) VALUES ('tienda','123456',2);
-INSERT INTO usuarios(username,upassword,fk_rol) VALUES ('almacen','123456',3);
-INSERT INTO usuarios(username,upassword,fk_rol) VALUES ('proveedor','123456',4);
-INSERT INTO usuarios(username,upassword,fk_rol) VALUES ('75388728','75388728',1);
+INSERT INTO usuarios(username,upassword,uname,fk_rol) VALUES ('administrador','123456','Administrador de Sistema',1);
+INSERT INTO usuarios(username,upassword,uname,fk_rol) VALUES ('tienda','123456','supervisor de Tienda',2);
+INSERT INTO usuarios(username,upassword,uname,fk_rol) VALUES ('almacen','123456','Encargado de Almacen',3);
+INSERT INTO usuarios(username,upassword,uname,fk_rol) VALUES ('proveedor','123456','Proveedor Bacus',4);
+INSERT INTO usuarios(username,upassword,uname,fk_rol) VALUES ('75388728','75388728','Wilfredo Luna',1);
 
 SELECT * FROM usuarios;
 

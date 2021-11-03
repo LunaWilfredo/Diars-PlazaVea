@@ -7,9 +7,9 @@
     
     $categorias = AlmacenController::listaCategorias();
 
-    if(isset($_POST['lote'])){
+    if(isset($_POST['lote']) && $_POST['lote'] != NULL){
         $registro = AlmacenController::registroProductos();
-        if($registro = 'ok'){
+        if($registro == 'ok'){
             echo '
             <div class="alert alert-success" role="alert">
                 Registro Exitoso
@@ -17,6 +17,7 @@
           ';
         }
     }
+
 
 ?>
 <section class="">
@@ -98,19 +99,19 @@
                 <div class="col-lg col-md col-sm">
                     <div class="form-group">
                         <label for="cliente">Lote</label>
-                        <input type="text" class="form-control" id="cliente" name="lote" value="L">
+                        <input type="text" class="form-control" id="" name="lote" value="L">
                     </div>
                 </div>
                 <div class="col-lg col-md col-sm">
                     <div class="form-group">
                         <label for="operacion">Descripcin</label>
-                        <input type="text" class="form-control" id="operacion" value="" name="descripcion">
+                        <input type="text" class="form-control" id="" value="" name="producto">
                     </div>
                 </div>
                 <div class="col-lg col-md col-sm">
                     <div class="form-group">
                         <label for="fecha">Cantidad</label>
-                        <input type="text" class="form-control" id="fecha" value="" name="cantidad">
+                        <input type="text" class="form-control" id="" value="" name="cantidad">
                     </div>
                 </div>
             </div>
@@ -118,7 +119,7 @@
                 <div class="col-lg col-md col-sm">
                     <div class="form-group">
                         <label for="fecha">Marca</label>
-                        <input type="text" class="form-control" id="marca" value="" name="marca">
+                        <input type="text" class="form-control" id="" value="" name="marca">
                     </div>
                 </div>
                 <div class="col-lg col-md col-sm">
@@ -135,14 +136,14 @@
                 <div class="col-lg col-md col-sm">
                     <div class="form-group">
                         <label for="caja">Vencimiento</label>
-                        <input type="text" class="form-control" id="caja" value="<?= date('d-m-Y')?>" name="fecha" readonly>
+                        <input type="date" class="form-control" id="" value="" name="fecha">
                     </div>
                 </div>
             </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-success">Registrar Producto</button>
+            <button type="submit" class="btn btn-success" name="nuevoProducto">Registrar Producto</button>
         </div>
         </div>
     </div>

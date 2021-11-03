@@ -32,9 +32,17 @@ Class AlmacenModel{
     }
 
     static public function registrarProductos($tabla,$datos){
-        $sql="";
+        $sql="INSERT INTO productos (nombre_producto,marca,lote,cantidad,fecha_vencimiento,fecha_registro,fk_categoria)  VALUES(:nombre_producto,:marca,:lote,:cantidad,:fecha_vencimiento,CURDATE(),:categoria)";
 
         $conexion = Conexion::conectar()->prepare($sql);
+
+        $conexion->bindParam(":nombre_producto",$datos['nombre_producto'],PDO::PARAM_STR);
+        $conexion->bindParam(":marca",$datos['marca'],PDO::PARAM_STR);
+        $conexion->bindParam(":lote",$datos['lote'],PDO::PARAM_STR);
+        $conexion->bindParam(":cantidad",$datos['cantidad'],PDO::PARAM_STR);
+        $conexion->bindParam(":fecha_vencimiento",$datos['fecha_vencimiento'],PDO::PARAM_STR);
+        $conexion->bindParam(":categoria",$datos['categoria'],PDO::PARAM_STR);
+        
         if($conexion->execute()){
             return "ok";
         }else{
@@ -42,7 +50,7 @@ Class AlmacenModel{
         }
 
         $conexion->close();
-        $conexion = NULL;
+        $conexion = null;
     }
 
 }

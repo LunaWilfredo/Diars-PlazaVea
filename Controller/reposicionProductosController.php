@@ -26,21 +26,19 @@ class AlmacenController{
     }
 
     static public function registroProductos(){
-        if(isset($_POST['lote'])){
+        if(isset($_POST['lote']) && $_POST['lote'] != NULL){
             $tabla = "productos";
-
             $datos = array (
-                "nombre_producto"=>$_POST['descripcion'],
+                "nombre_producto"=>$_POST['producto'],
                 "marca"=>$_POST['marca'],
                 "lote"=>$_POST['lote'],
                 "cantidad"=>$_POST['cantidad'],
                 "fecha_vencimiento"=>$_POST['fecha'],
                 "categoria"=>$_POST['categoria']
             );
-        //    $respuesta = AlmacenModel::registroProductos($tabla,$datos);
-        //    return $respuesta; 
-        var_dump($tabla);
-        var_dump($datos);
+            var_dump($datos);
+            $respuesta = AlmacenModel::registrarProductos($tabla,$datos);
+            return $respuesta; 
         }
     }
 
