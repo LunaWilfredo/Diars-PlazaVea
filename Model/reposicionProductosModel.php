@@ -53,6 +53,37 @@ Class AlmacenModel{
         $conexion = null;
     }
 
+
+    static public function eliminarProducto($tabla,$id){
+        $sql ="DELETE FROM $tabla WHERE id = $id ";
+
+        $conexion = Conexion::conectar()->prepare($sql);
+        if($conexion->execute()){
+            return 'ok';
+        }else{
+            print_r(Conexion::conectar()->errorInfo());
+        }
+
+        $conexion->close();
+        $conexion = NULL;
+    }
+
+    static public function actualizarStock($tabla,$id,$cantidad){
+
+        $sql="UPDATE $tabla SET cantidad = cantidad + $cantidad WHERE id = $id ";
+
+        $conexion = Conexion::conectar()->prepare($sql);
+        if($conexion->execute()){
+            return 'ok';
+        }else{
+            print_r(Conexion::conectar()->errorInfo());
+        }
+
+        $conexion ->close();
+        $conexion = NULL;
+
+    }
+
 }
 
 ?>

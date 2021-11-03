@@ -1,5 +1,21 @@
 <?php
+
+    if(isset($_POST['buscar']) && $_POST['buscar'] != NULL){
+        $listar = AlmacenController::listarProductos();
+    }else{
+        $listar = AlmacenController::listarProductos();
+    }
+
     $listar = AlmacenController::listarProductos();
+
+    $eliminar = AlmacenController::eliminarProducto();
+    if($eliminar == 'ok'){
+        echo '
+            <div class="alert alert-success" role="alert">
+                Eliminado Exitoso
+            </div>
+          ';
+    }
 ?>
 <section class="">
     <form action="" method="post">
@@ -15,8 +31,8 @@
                     <form action="" method="post">
                         <div class="row border py-2">
                             <div class="col-lg col-md col-sm d-flex">
-                                <input type="text" class="form-control m-2" name="buscarProducto" value="" placeholder="Ingresar codigo de Producto,stock o fecha">
-                                <button type="button" class="btn btn-success p-2">
+                                <input type="text" class="form-control m-2" name="buscar" value="" placeholder="Ingresar codigo de Producto,stock o fecha">
+                                <button type="submit" class="btn btn-success p-2">
                                     <i class="fas fa-search"></i>
                                 </button>
                             </div>
@@ -76,7 +92,7 @@
                                     <?php endif;?>
                                 </td>
                                 <td>
-                                    <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></i></a>
+                                    <a href="body.php?pagina=consultarVencimiento&id=<?=$producto['id']?>" class="btn btn-danger"><i class="fas fa-trash"></i></i></a>
                                 </td>
                             </tr>
                             <?php endforeach;?>                                   

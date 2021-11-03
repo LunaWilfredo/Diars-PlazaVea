@@ -20,6 +20,8 @@ class CambioDevolucionController{
         return $respuesta;
     }
 
+    
+
     public function generarDevolucion($cliente,$tipoOperacion){
         
     }

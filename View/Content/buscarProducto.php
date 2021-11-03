@@ -1,7 +1,11 @@
 <?php 
 
-    $lista = CambioDevolucionController::listarProductosPasillos();
-
+    if(isset($_POST['buscar']) && $_POST['buscar'] != NULL){
+        $lista = CambioDevolucionController::buscarProductoPasillo();
+    }else{
+        $lista = CambioDevolucionController::listarProductosPasillos();
+    }
+ 
 ?>
 <section class="">
     <form action="" method="post">
@@ -26,7 +30,7 @@
                                     <input type="text" class="form-control text-center w-100" name="buscar" value="" placeholder="Ingresar codigo de Producto">
                                 </div>
                                 <div class="col-md-">
-                                    <button type="button" class="btn btn-success">
+                                    <button type="submit" class="btn btn-success">
                                         <i class="fas fa-search"></i>
                                     </button>
                                 </div>
@@ -45,20 +49,7 @@
                                 <th>Cantidad</th>
                                 <th>Categoria</th>
                                 <th>Fecha Vencimiento</th>
-                                <th>
-                                    Ubicacion
-                                    
-                                    <?php if(isset($_POST['btn-pasillo'])):?>     
-                                            <button type="submit" class="btn btn-secondary" name="btn-ocultar">
-                                                <i class="fas fa-eye-slash"></i>
-                                            </button>
-                                    <?php else:?>   
-                                            <button type="submit" class="btn btn-warning" name="btn-pasillo">
-                                                    <i class="fas fa-eye"></i>
-                                            </button>
-                                    <?php endif;?>
-
-                                </th>
+                                <th>Ubicacion</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -75,11 +66,16 @@
                                     <td><?=$list['categoria']?></td>
                                     <td><?=$list['fecha_vencimiento']?></td>
                                     <td>
-                                    <?php if(isset($_POST['btn-pasillo'])):?>
-                                        Pasillo <?=$list['pasillo']?>
-                                    <?php else:?>
-                                        Oculto
-                                    <?php endif;?>
+                                        <!-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ubicacionModal">
+                                            <i class="fas fa-eye"></i>
+                                        </button> -->
+                                        <a href="body.php?pagina=buscarProducto&id=<?=$list['pasillo']?>"  class="btn btn-warning"><i class="fas fa-info-circle"></i></a>
+                                        <?php if(isset($_GET['id']) && $_GET['id'] == $list['pasillo']):?>
+                                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ubicacionModal">
+                                            <i class="fas fa-eye"></i>
+                                            </button>
+                                        <?php endif;?>
+                                    
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -90,3 +86,30 @@
         </div>
     </form>
 </section>
+
+<!-- MODAL de visualizacion-->
+
+<div class="modal fade" id="ubicacionModal" tabindex="-1" aria-labelledby="ubicacionModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title py-2" id="exampleModalLabel">Ubicacion</h5>
+        <button type="button" class="btn btn-success" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">Ok</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <table class="table">
+            <thead class="text-center text-light bg-warning">
+                <th>Pasillo</th>
+            </thead>
+            <tbody>
+            <?php if(isset($_GET['id'])):?>
+                <td>Pasillo <?=$_GET['id'] ?> </td>
+            <?php endif;?>
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

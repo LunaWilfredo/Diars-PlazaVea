@@ -42,6 +42,28 @@ class AlmacenController{
         }
     }
 
+    static public function eliminarProducto(){
+        if(isset($_GET['id']) && $_GET['id'] !=NULL ){
+            $tabla = "productos";
+            $id = $_GET['id'];
+
+            $respuesta = AlmacenModel::eliminarProducto($tabla,$id);
+            return $respuesta;
+        }
+    }
+
+    static public function actualizarStock($id,$cantidad){
+        if(isset($_GET['id']) && $_GET['id'] != NULL && isset($_POST['cantidad']) && $_POST['cantidad'] != NULL ){
+            $tabla = "productos";
+            $cantidad = $_POST['cantidad'];
+            $id = $_GET['id'];
+
+            $respuesta = AlmacenModel::actualizarStock($tabla,$id,$cantidad);
+            return $respuesta;
+        }
+        
+    }
+
 }
 
 ?>
