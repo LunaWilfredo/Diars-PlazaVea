@@ -82,6 +82,7 @@
                 </div>
             
                 <div class="col-lg-12 col-md col-sm text-center mb-2">
+                    <label for="">Productos Seleccionados</label>
                     <table class="table" id="dataTable" width="100%" cellspacing="0">
                         <thead class="text-center bg-danger text-light rounded">
                             <tr>
