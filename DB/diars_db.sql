@@ -101,6 +101,11 @@ VALUES ('Galletas','ChocoSoda','L0021',20,'30-10-2021',CURDATE(),1);
 INSERT INTO productos (nombre_producto,marca,lote,cantidad,fecha_vencimiento,fecha_registro,fk_categoria) 
 VALUES ('Pan','Bimbo','L0025',10,'10-11-2021',CURDATE(),5);
 
+
+DELETE FROM productos WHERE id=11
+
+UPDATE productos SET cantidad = cantidad + 1 WHERE id = 1
+
 SELECT * FROM productos
 
 /*UPDATE productos set fecha_vencimiento = '18-10-2021' WHERE id = 1 ;*/

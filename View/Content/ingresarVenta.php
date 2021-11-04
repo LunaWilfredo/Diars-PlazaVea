@@ -1,3 +1,27 @@
+<?php 
+
+    $venta = PagosCajaController :: listaVentas();
+    foreach($venta as $idVenta){
+        echo $idVenta['id'];
+    }
+      
+
+     if(isset($_POST['buscar']) && !empty($_POST['buscar'])){
+         $producto = PagosCajaController::buscarProducto();
+     }else{
+        $producto = PagosCajaController::buscarProducto();
+     }
+     if(isset($_POST['agregar'])){
+        $pdt =$_POST['producto']; 
+        $cantidad=$_POST['cantidad'];
+        $vta=$idVenta['id'];
+        $registro = PagosCajaController::detalleVenta();
+        echo $pdt;
+        echo $cantidad;
+        echo $vta;
+     }
+
+?>
 <section class="">
     <form action="" method="post">
         <div class="container-fluid" style="vh:100%">
@@ -10,22 +34,54 @@
                 <div class="col-lg-12 col-md col-sm mb-2">
                     <!-- registrar Productos -->
                     <div class="row">
-                        <div class="col-sm col-md col-lg">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">Codigo Producto</span>
-                                </div>
-                                <input type="text" aria-label="First name" class="form-control">
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ListaProductos">
-                                    Buscar
-                                </button>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Codigo Producto</span>
                             </div>
+                            <input type="text" aria-label="First name" class="form-control" name="buscar">
+                            <input type="submit" aria-label="First name" class="btn btn-warning" value="Buscar">
+                        </div>
+                
+                        <!-- </div> -->
+                        <div class="table text-center">
+                            <table class="table" id="dataTable" width="100%" cellspacing="0">
+                                <thead class="text-center bg-secondary text-light">
+                                    <tr>
+                                        <th>Codigo</th>
+                                        <th>Descripcion Producto</th>
+                                        <th>Cantidad</th>
+                                        <th>Precio</th>
+                                        <th>Añadir</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                
+                                    <?php 
+                                    foreach($producto as $key => $pro):?>
+                                    <tr>
+                                        <td>
+                                            <?=$pro['lote']?>
+                                            <input type="text" value="<?=$pro['id']?>" name='producto'>
+                                        </td>
+                                        <td><?=$pro['nombre_producto']?></td>
+                                        <td>
+                                            <input type="text" class="form-control" name="cantidad" value="1" maxlength="3" minlength="1">
+                                        </td>
+                                        <td><?=$pro['precio']?></td>
+                                        <td class="text-center">
+                                            <button type="submit" class="btn btn-danger btn-sm" name="agregar">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </td>
+                                    </tr> 
+                                    <?php endforeach; ?>  
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             
-
-                <div class="col-lg col-md col-sm text-center mb-2">
+                <div class="col-lg-12 col-md col-sm text-center mb-2">
                     <table class="table" id="dataTable" width="100%" cellspacing="0">
                         <thead class="text-center bg-danger text-light rounded">
                             <tr>
@@ -44,32 +100,11 @@
                                 <td>12.00</td>
                                 <td><a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a></td>
                             </tr>
-                            <tr>
-                                <td><a href="" class="text-dark text-decoration-none">2</a></td>
-                                <td>Producto Seleccionado</td>
-                                <td>4</td>
-                                <td>12.00</td>
-                                <td><a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="" class="text-dark text-decoration-none">3</a></td>
-                                <td>Producto Seleccionado</td>
-                                <td>4</td>
-                                <td>12.00</td>
-                                <td><a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="" class="text-dark text-decoration-none">4</a></td>
-                                <td>Producto Seleccionado</td>
-                                <td>4</td>
-                                <td>12.00</td>
-                                <td><a href="#!" class="btn btn-danger"><i class="fas fa-trash"></i></a></td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <div class="col-lg-3 col-md col-sm mb-5">
+                <div class="col-lg-12 col-md col-sm mb-5">
                     <div class="row">
                         <!-- Monto de Pago -->
                         <div class="col-lg col-md col-sm-12">
@@ -115,6 +150,16 @@
             <div class="modal-body">
                 <!-- Formulario de busqueda de productos -->
                 <form action="" class="form" method="post">
+                        <!-- <div class="col-sm col-md col-lg"> -->
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Codigo Producto</span>
+                        </div>
+                        <input type="text" aria-label="First name" class="form-control" name="buscar">
+                        <input type="submit" aria-label="First name" class="btn btn-warning" value="buscar">
+                    </div>
+                
+                        <!-- </div> -->
                     <div class="table">
                         <table class="table" id="dataTable" width="100%" cellspacing="0">
                             <thead class="text-center bg-danger text-light">
@@ -126,18 +171,21 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php 
+                                foreach($producto as $key => $pro):?>
                                 <tr>
-                                    <td>0001</td>
-                                    <td>Arroz costeño</td>
+                                    <td><?=$pro['id']?></td>
+                                    <td><?=$pro['nombre_producto']?></td>
                                     <td>
-                                        <input type="text" class="form-control" name="" value="1" maxlength="3" minlength="1">
+                                        <input type="text" class="form-control" name="cantidad" value="1" maxlength="3" minlength="1">
                                     </td>
                                     <td class="text-center">
-                                        <button class="btn btn-danger btn-sm">
+                                        <button class="btn btn-danger btn-sm" type="">
                                             <i class="fas fa-plus"></i>
                                         </button>
                                     </td>
-                                </tr>       
+                                </tr> 
+                                <?php endforeach; ?>  
                             </tbody>
                         </table>
                     </div>
