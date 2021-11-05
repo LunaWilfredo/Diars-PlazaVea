@@ -1,25 +1,32 @@
 <?php 
-
     $venta = PagosCajaController :: listaVentas();
     foreach($venta as $idVenta){
-        echo $idVenta['id'];
+        $idSecret = $idVenta['id'];
     }
       
-
-     if(isset($_POST['buscar']) && !empty($_POST['buscar'])){
-         $producto = PagosCajaController::buscarProducto();
-     }else{
+    if(isset($_POST['buscar']) && !empty($_POST['buscar'])){
         $producto = PagosCajaController::buscarProducto();
-     }
-     if(isset($_POST['agregar'])){
-        $pdt =$_POST['producto']; 
-        $cantidad=$_POST['cantidad'];
-        $vta=$idVenta['id'];
-        $registro = PagosCajaController::detalleVenta();
-        echo $pdt;
-        echo $cantidad;
-        echo $vta;
-     }
+    }else{
+        $producto = PagosCajaController::buscarProducto();
+    }
+
+    if(isset($_POST['agregar'])){
+        // $pdt =$_POST['producto']; 
+        // $cantidad=$_POST['cantidad'];
+        // $vta=$_POST['idventa'];
+        $registro = PagosCajaController::registroDetalleVenta();
+        if($registro == 'ok'){
+            echo "<div class='alert alert-success'>Producto Registrado</div>";
+        }
+    }
+    if(!empty($idSecret)){
+        $detalle = PagosCajaController::listaDetalleVenta($idSecret);
+        $subtotal = PagosCajaController::subtotal($idSecret);
+    }
+
+    if(isset($_GET['dlt']) && !empty($_GET['dlt'])){
+        $delete = PagosCajaController::eliminarProductoDetalleVenta();
+    }
 
 ?>
 <section class="">
@@ -38,6 +45,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Codigo Producto</span>
                             </div>
+                            <input type="hidden" value="<?=$idVenta['id']?>" class="form-control" name="idventa" id="idventa">
                             <input type="text" aria-label="First name" class="form-control" name="buscar">
                             <input type="submit" aria-label="First name" class="btn btn-warning" value="Buscar">
                         </div>
@@ -55,13 +63,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                
-                                    <?php 
-                                    foreach($producto as $key => $pro):?>
+                                    <?php foreach($producto as $key => $pro):?>
                                     <tr>
                                         <td>
                                             <?=$pro['lote']?>
-                                            <input type="text" value="<?=$pro['id']?>" name='producto'>
+                                            <input type="hidden" value="<?=$pro['id']?>" name='producto'>
                                         </td>
                                         <td><?=$pro['nombre_producto']?></td>
                                         <td>
@@ -94,13 +100,17 @@
                             </tr>
                         </thead>
                         <tbody>
+                        <?php 
+                        foreach($detalle as $key => $det):             
+                        ?>
                             <tr>
-                                <td><a href="" class="text-dark text-decoration-none">1</a></td>
-                                <td>Producto Seleccionado</td>
-                                <td>4</td>
-                                <td>12.00</td>
-                                <td><a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a></td>
+                                <td><?=$det['lote']?></td>
+                                <td><?=$det['producto']?></td>
+                                <td><?=$det['cantidad']?></td>
+                                <td><?=$det['precio']?></td>
+                                <td><a href="body.php?pagina=ingresarVenta&dlt=<?=$det['idpv']?>" class="btn btn-danger"><i class="fas fa-trash"></i></a></td>
                             </tr>
+                        <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
@@ -109,8 +119,17 @@
                     <div class="row">
                         <!-- Monto de Pago -->
                         <div class="col-lg col-md col-sm-12">
-                            <h5 class="text-dark">SubTotal (s/.): <span class="lead">12.00</span></h5>
+                        <?php 
+                        foreach($subtotal as $key => $sub):             
+                        ?>
+                            
+                            <h5 class="text-dark">SubTotal (s/.): <span class="lead"><?=$sub['subtotal'].'.00' ?></span></h5>
+
+                            <input type="text" value="<?=$sub['subtotal']?>" name="subtotal" class="form-control">
+
+                        <?php endforeach;?>
                             <h5 class="text-dark">IGV (s/.): <span class="lead">0.18</span></h5>
+                            <input type="text" value="0.18" name="igv" class="form-control">
                         </div>
                         <div class="col-lg col-md col-sm-12">
                             <h2 class="text-left text-dark">Total (s/.):</h2>
