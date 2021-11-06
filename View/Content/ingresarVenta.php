@@ -36,6 +36,7 @@
 
     if(isset($_POST['btn-operaciones'])){
         $orden = PagosCajaController::ordenDetalleVenta();
+        $mail = MailController::mailBoletaventa();
     }
 
 ?>
