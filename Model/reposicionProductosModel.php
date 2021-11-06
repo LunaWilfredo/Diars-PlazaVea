@@ -17,7 +17,7 @@ Class AlmacenModel{
 
     static public function listarProductos($tabla,$producto){
         // condicion de busqueda
-        if(isset($producto) && $producto != NULL){
+        if(isset($producto) && !empty($producto)){
             $sql="SELECT p.*,c.nombre_categoria AS 'categoria' FROM $tabla p INNER JOIN categorias c ON p.fk_categoria = c.id WHERE p.nombre_producto = '$producto' or p.lote = '$producto' or c.nombre_categoria = '$producto' or p.fecha_vencimiento = '$producto' ";
         }else{
             $sql="SELECT p.*,c.nombre_categoria AS 'categoria' FROM $tabla p INNER JOIN categorias c ON p.fk_categoria = c.id";
@@ -32,7 +32,7 @@ Class AlmacenModel{
     }
 
     static public function registrarProductos($tabla,$datos){
-        $sql="INSERT INTO productos (nombre_producto,marca,lote,cantidad,fecha_vencimiento,fecha_registro,fk_categoria)  VALUES(:nombre_producto,:marca,:lote,:cantidad,:fecha_vencimiento,CURDATE(),:categoria)";
+        $sql="INSERT INTO productos (nombre_producto,marca,lote,cantidad,fecha_vencimiento,fecha_registro,fk_categoria,precio)  VALUES(:nombre_producto,:marca,:lote,:cantidad,:fecha_vencimiento,CURDATE(),:categoria,:precio)";
 
         $conexion = Conexion::conectar()->prepare($sql);
 
@@ -42,6 +42,7 @@ Class AlmacenModel{
         $conexion->bindParam(":cantidad",$datos['cantidad'],PDO::PARAM_STR);
         $conexion->bindParam(":fecha_vencimiento",$datos['fecha_vencimiento'],PDO::PARAM_STR);
         $conexion->bindParam(":categoria",$datos['categoria'],PDO::PARAM_STR);
+        $conexion->bindParam(":precio",$datos['precio'],PDO::PARAM_STR);
         
         if($conexion->execute()){
             return "ok";

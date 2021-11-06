@@ -1,5 +1,5 @@
 <?php 
-    if(isset($_POST['buscar']) && $_POST['buscar'] != NULL){
+    if(isset($_POST['buscar']) && !empty($_POST['buscar'])){
         $listar = AlmacenController::listarProductos();
     }else{
         $listar = AlmacenController::listarProductos();
@@ -7,7 +7,7 @@
     
     $categorias = AlmacenController::listaCategorias();
 
-    if(isset($_POST['lote']) && $_POST['lote'] != NULL){
+    if(isset($_POST['lote']) && !empty($_POST['lote'])){
         $registro = AlmacenController::registroProductos();
         if($registro == 'ok'){
             echo '
@@ -56,6 +56,7 @@
                                 <th>Codigo</th>
                                 <th>Lote</th>
                                 <th>Descripcion</th>
+                                <th>Marca</th>
                                 <th>Stock</th>
                                 <th>Categoria</th>
                                 <th>Fecha Vencimiento</th>
@@ -72,6 +73,7 @@
                                 <td><?=$i?></td>
                                 <td><?=$value['lote']?></td>
                                 <td><?=$value['nombre_producto']?></td>
+                                <td><?=$value['marca']?></td>
                                 <td><?=$value['cantidad']?></td>
                                 <td><?=$value['categoria']?></td>
                                 <td><?=$value['fecha_vencimiento']?></td>
@@ -108,12 +110,6 @@
                         <input type="text" class="form-control" id="" value="" name="producto">
                     </div>
                 </div>
-                <div class="col-lg col-md col-sm">
-                    <div class="form-group">
-                        <label for="fecha">Cantidad</label>
-                        <input type="text" class="form-control" id="" value="" name="cantidad">
-                    </div>
-                </div>
             </div>
             <div class="row">
                 <div class="col-lg col-md col-sm">
@@ -122,6 +118,20 @@
                         <input type="text" class="form-control" id="" value="" name="marca">
                     </div>
                 </div>
+                <div class="col-lg col-md col-sm">
+                    <div class="form-group">
+                        <label for="fecha">Cantidad</label>
+                        <input type="text" class="form-control" id="" value="" name="cantidad">
+                    </div>
+                </div>
+                <div class="col-lg col-md col-sm">
+                    <div class="form-group">
+                        <label for="caja">Precio</label>
+                        <input type="text" class="form-control" id="" value="" name="precio">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-lg col-md col-sm">
                     <div class="form-group">
                         <label for="local">Categoria</label>

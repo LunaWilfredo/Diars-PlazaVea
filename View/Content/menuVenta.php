@@ -11,9 +11,7 @@ if(isset($_POST['vta'])){
         echo " <div class='alert alert-success'>Inicio Exitoso</div>
         <script>
             setTimeout(function(){
-
                 window.location = 'body.php?pagina=ingresarVenta';
-
             },1000);
         </script>
         ";  
@@ -53,9 +51,9 @@ if(isset($_POST['vta'])){
                 </div>
             </div>
         </div>
-        <div class="alert alert-success" role="alert">
+        <!-- <div class="alert alert-success" role="alert">
             <i class="fas fa-check-circle"></i> Venta realizada con exito.
-        </div>
+        </div> -->
     </form>
 </section>
 

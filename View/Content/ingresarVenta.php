@@ -1,4 +1,9 @@
 <?php 
+
+    $cajero = LoginController::usuarioLogin($_SESSION['usuario']);
+    $metodo = PagosCajaController::metodos_pago();
+    $local = PagosCajaController::local();
+
     $venta = PagosCajaController :: listaVentas();
     foreach($venta as $idVenta){
         $idSecret = $idVenta['id'];
@@ -22,10 +27,15 @@
     if(!empty($idSecret)){
         $detalle = PagosCajaController::listaDetalleVenta($idSecret);
         $subtotal = PagosCajaController::subtotal($idSecret);
+        $total = PagosCajaController::total($idSecret);
     }
 
     if(isset($_GET['dlt']) && !empty($_GET['dlt'])){
         $delete = PagosCajaController::eliminarProductoDetalleVenta();
+    }
+
+    if(isset($_POST['btn-operaciones'])){
+        $orden = PagosCajaController::ordenDetalleVenta();
     }
 
 ?>
@@ -67,9 +77,9 @@
                                     <tr>
                                         <td>
                                             <?=$pro['lote']?>
-                                            <input type="hidden" value="<?=$pro['id']?>" name='producto'>
+                                            <input type="text" value="<?=$pro['id']?>" name='producto'>
                                         </td>
-                                        <td><?=$pro['nombre_producto']?></td>
+                                        <td><?=$pro['nombre_producto']?> <?=$pro['marca']?></td>
                                         <td>
                                             <input type="text" class="form-control" name="cantidad" value="1" maxlength="3" minlength="1">
                                         </td>
@@ -105,7 +115,7 @@
                         ?>
                             <tr>
                                 <td><?=$det['lote']?></td>
-                                <td><?=$det['producto']?></td>
+                                <td><?=$det['producto']?> <?=$det['marca']?></td>
                                 <td><?=$det['cantidad']?></td>
                                 <td><?=$det['precio']?></td>
                                 <td><a href="body.php?pagina=ingresarVenta&dlt=<?=$det['idpv']?>" class="btn btn-danger"><i class="fas fa-trash"></i></a></td>
@@ -119,21 +129,16 @@
                     <div class="row">
                         <!-- Monto de Pago -->
                         <div class="col-lg col-md col-sm-12">
-                        <?php 
-                        foreach($subtotal as $key => $sub):             
-                        ?>
-                            
+                        <?php foreach($subtotal as $key => $sub):?>
                             <h5 class="text-dark">SubTotal (s/.): <span class="lead"><?=$sub['subtotal'].'.00' ?></span></h5>
-
-                            <input type="text" value="<?=$sub['subtotal']?>" name="subtotal" class="form-control">
-
                         <?php endforeach;?>
                             <h5 class="text-dark">IGV (s/.): <span class="lead">0.18</span></h5>
-                            <input type="text" value="0.18" name="igv" class="form-control">
                         </div>
                         <div class="col-lg col-md col-sm-12">
+                        <?php foreach($total as $key => $total):?>
                             <h2 class="text-left text-dark">Total (s/.):</h2>
-                            <h1 class="text-left text-primary">12.00</h1>
+                            <h1 class="text-left text-primary"><?=$total['total']?></h1>
+                        <?php endforeach;?>
                         </div>
                     </div>
                     <!-- Metodo de Pago -->
@@ -157,75 +162,13 @@
 
 
 <!-- Modals -->
-<!-- Modal Busqueda de productos -->
-<div class="modal fade" id="ListaProductos" tabindex="-1" aria-labelledby="ListaProductos" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Lista de Productos</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- Formulario de busqueda de productos -->
-                <form action="" class="form" method="post">
-                        <!-- <div class="col-sm col-md col-lg"> -->
-                    <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Codigo Producto</span>
-                        </div>
-                        <input type="text" aria-label="First name" class="form-control" name="buscar">
-                        <input type="submit" aria-label="First name" class="btn btn-warning" value="buscar">
-                    </div>
-                
-                        <!-- </div> -->
-                    <div class="table">
-                        <table class="table" id="dataTable" width="100%" cellspacing="0">
-                            <thead class="text-center bg-danger text-light">
-                                <tr>
-                                    <th>Codigo</th>
-                                    <th>Descripcion Producto</th>
-                                    <th>Cantidad</th>
-                                    <th>Añadir</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php 
-                                foreach($producto as $key => $pro):?>
-                                <tr>
-                                    <td><?=$pro['id']?></td>
-                                    <td><?=$pro['nombre_producto']?></td>
-                                    <td>
-                                        <input type="text" class="form-control" name="cantidad" value="1" maxlength="3" minlength="1">
-                                    </td>
-                                    <td class="text-center">
-                                        <button class="btn btn-danger btn-sm" type="">
-                                            <i class="fas fa-plus"></i>
-                                        </button>
-                                    </td>
-                                </tr> 
-                                <?php endforeach; ?>  
-                            </tbody>
-                        </table>
-                    </div>
-                </form>
-            <!-- Fin de formulario de buesqueda de productos -->
-            </div>
-            <!-- <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-            </div> -->
-        </div>
-    </div>
-</div>
-
-
 <!-- Modal  venta -->
+<form action="" method="POST">
 <div class="modal fade" id="datosVenta" tabindex="-1" aria-labelledby="datosVenta" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="refund">Detalles</h5>
+                <h5 class="modal-title" id="refund">Detalle de Venta</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -233,21 +176,16 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-lg col-md col-sm">
+                    <input type="text" value="<?=$idVenta['id']?>" class="form-control" name="idventa" id="idventa">
                         <div class="form-group">
                             <label for="cliente">Cliente</label>
-                            <input type="text" class="form-control" id="cliente" name="" placeholder="DNI Cliente">
-                        </div>
-                    </div>
-                    <div class="col-lg col-md col-sm">
-                        <div class="form-group">
-                            <label for="operacion">N° Operacion</label>
-                            <input type="text" class="form-control" id="operacion" value="OP00001" name="" readonly>
+                            <input type="text" class="form-control" id="cliente" name="cliente" placeholder="DNI Cliente" required>
                         </div>
                     </div>
                     <div class="col-lg col-md col-sm">
                         <div class="form-group">
                             <label for="fecha">Fecha</label>
-                            <input type="text" class="form-control" id="fecha" value="<?= date('d/m/Y') ?>" name="" readonly>
+                            <input type="text" class="form-control" id="fecha" value="<?= date('d/m/Y') ?>" name="fecha" readonly>
                         </div>
                     </div>
                 </div>
@@ -255,13 +193,19 @@
                     <div class="col-lg col-md col-sm">
                         <div class="form-group">
                             <label for="local">Local</label>
-                            <input type="text" class="form-control" id="local" value="Comas" name="" readonly>
+                            <?php foreach($local as $local):?>
+                            <input type="text" class="form-control" value="<?=$local['nombre_local']?>" readonly>
+                            <input type="text" class="form-control" id="local" value="<?=$local['id']?>" name="local">
+                            <?php endforeach;?>
                         </div>
                     </div>
                     <div class="col-lg col-md col-sm">
                         <div class="form-group">
-                            <label for="caja">Cajero</label>
-                            <input type="text" class="form-control" id="caja" value="CJ01" name="" readonly>
+                            <label for="cajero">Cajero</label>
+                            <?php foreach($cajero as $key => $cajero):?>
+                            <input type="text" class="form-control" value="CJ<?=$cajero['username']?>" readonly>  
+                            <input type="text" class="form-control" id="cajero" value="<?=$cajero['id']?>" name="cajero" readonly>
+                            <?php endforeach;?> 
                         </div>
                     </div>
                 </div>
@@ -269,16 +213,22 @@
                 <div class="row border p-2 mb-2">
                     <!-- Monto de Pago -->
                     <div class="col-lg col-md col-sm">
-                        <h6 class="text-dark">SubTotal(s/.):</h6>
-                        <h6 class="">12.00</h6>
+                        <?php foreach($subtotal as $key => $sub):?>
+                            <h6 class="text-dark">SubTotal(s/.):</h6>
+                            <h6 class=""><?=$sub['subtotal'].'.00' ?></h6>
+
+                            <input type="text" value="<?=$sub['subtotal']?>" name="subtotal" class="form-control">
+                        <?php endforeach;?>    
                     </div>
                     <div class="col-lg col-md col-sm">
                         <h6 class="text-dark">IGV (s/.):</h6>
                         <h6 class="">0.18</h6>
+                        <input type="text" value="0.18" name="igv" class="form-control">
                     </div>
                     <div class="col-lg col-md col-sm">
                         <h6 class="text-dark">Total (s/.):</h6>
-                        <h5 class="text-primary">12.00</h5>
+                        <h5 class="text-primary"><?=$total['total']?></h5>
+                        <input type="text" value="<?=$total['total']?>" name="total" class="form-control">
                     </div>
                 </div>
 
@@ -287,10 +237,10 @@
                     <div class="col-lg col-md col-sm">
                         <div class="form-group">
                             <label for="metodopago">Metodo Pago</label>
-                            <select name="" id="metodopago" class="form-control" value="">
-                                <option value="">Efectivo</option>
-                                <option value="">Tarjeta Debito</option>
-                                <option value="">Tarjeta Credito</option>
+                            <select name="metodopago" id="metodopago" class="form-control" value="">
+                            <?php foreach($metodo as $metodo):?>
+                                <option value="<?=$metodo['id']?>"><?=$metodo['nombre_metodo']?></option>
+                            <?php endforeach ?>
                             </select>
                         </div>
                     </div>
@@ -300,16 +250,16 @@
                         <!-- Condicion de Tarjeta credito/debito-->
                         <div class="form-group">
                             <label for="tarjeta">N° Tarjeta</label>
-                            <input type="text" class="form-control" id="tarjeta" value="192-000-1222-000" name="">
+                            <input type="text" class="form-control" id="tarjeta" value="192-000-1222-000" name="tarjeta">
                         </div>
                     </div>
                     <!-- Condicion de tarjeta credito cuotas -->
                     <div class="col-lg col-md col-sm">
                         <div class="form-group">
                             <label for="cuotas">Metodo</label>
-                            <select name="" id="cuotas" class="form-control" value="">
-                                <option value="">Directo</option>
-                                <option value="">Cuotas</option>
+                            <select name="metodo" id="cuotas" class="form-control" value="">
+                                <option value="directo">Directo</option>
+                                <option value="cuotas">Cuotas</option>
                             </select>
                         </div>
                     </div>
@@ -317,7 +267,7 @@
                     <div class="col-lg col-md col-sm">
                         <div class="form-group">
                             <label for="cuotas">Cuotas</label>
-                            <input type="text" class="form-control" id="cuotas" value="1" name="">
+                            <input type="text" class="form-control" id="cuotas" value="1" name="cuotas">
                         </div>
                     </div>
                 </div>
@@ -330,6 +280,7 @@
 </div>
 
 <!-- Modal confirmacion venta -->
+
 <div class="modal fade" id="confirmacionVenta" tabindex="-1" aria-labelledby="confirmacionVenta" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -342,18 +293,15 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md col-sm text-center">
-                        <h1 class="h6 ">N° Operacion</h1>
-                        <input type="text" name="" class=" form-control rounded text-center w-100 mb-2" value="ORD0001" readonly>
-                    </div>
-                    <div class="col-md col-sm text-center">
                         <h1 class="h6 ">Correo</h1>
-                        <input type="text" name="" class=" form-control rounded text-center w-100 mb-2" value="" placeholder="correo@gmail.com">
+                        <input type="text" name="correo" class=" form-control rounded text-center w-100 mb-2" value="" placeholder="correo@gmail.com">
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal">Enviar</button>
+                <button type="submit" class="btn btn-success" name="btn-operaciones">Enviar</button>
             </div>
         </div>
     </div>
 </div>
+</form>

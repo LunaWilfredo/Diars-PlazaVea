@@ -28,7 +28,6 @@ Class LoginController{
         }
         return $respuesta;
     }
-    
 
     // Detallado depues de Inicio de sesion
 

@@ -34,9 +34,9 @@ class AlmacenController{
                 "lote"=>$_POST['lote'],
                 "cantidad"=>$_POST['cantidad'],
                 "fecha_vencimiento"=>$_POST['fecha'],
-                "categoria"=>$_POST['categoria']
+                "categoria"=>$_POST['categoria'],
+                "precio"=>$_POST['precio']
             );
-            var_dump($datos);
             $respuesta = AlmacenModel::registrarProductos($tabla,$datos);
             return $respuesta; 
         }

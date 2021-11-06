@@ -156,8 +156,10 @@ INSERT INTO ventas (fecha_venta) VALUES (CURDATE());
 
 SELECT * FROM ventas ORDER BY id DESC
 
+
 CREATE TABLE operaciones (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	cod_comprobante VARCHAR(20) NOT NULL,  /*COP+DNI*/
 	dni_cliente VARCHAR(8) NOT NULL,
 	fecha_venta VARCHAR(20) NOT NULL ,
 	monto_pagar INT NOT NULL ,
@@ -190,11 +192,25 @@ INSERT INTO detalle_ventas (cantidad,fk_productos,fk_ventas) VALUES (1,3,1);
 
 SELECT *FROM detalle_ventas
 
-SELECT p.lote,p.nombre_producto AS 'producto',p.precio,dv.cantidad FROM detalle_ventas dv 
-INNER JOIN productos p ON dv.fk_productos = p.id 
+SELECT p.lote,p.nombre_producto AS 'producto',p.precio,dv.cantidad,dv.id,v.* FROM detalle_ventas dv 
+INNER JOIN productos p ON dv.fk_productos = p.id INNER JOIN ventas v ON  dv.fk_ventas = v.id 
 
+/*sub total*/
+SELECT SUM(p.precio) AS 'subtotal' FROM productos p INNER JOIN detalle_ventas dv ON p.id = dv.fk_productos 
+WHERE dv.fk_ventas = 2
+
+/*total*/
+SELECT SUM(p.precio)+(SUM(p.precio)*0.18) FROM productos p INNER JOIN detalle_ventas dv ON p.id = dv.fk_productos 
+WHERE dv.fk_ventas = 2
+
+/*vista detallada de precios y productos*/
+SELECT p.precio FROM productos p INNER JOIN detalle_ventas dv ON p.id = dv.fk_productos 
+WHERE dv.fk_ventas = 2
+
+SELECT SUM(precio) FROM productos
 
 /*---------------------------------*/
+/*tabla comprobantes para comprobantes de ventas y cambios */
 
 SHOW TABLES 
 DESCRIBE roles

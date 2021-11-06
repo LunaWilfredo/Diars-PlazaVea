@@ -4,6 +4,27 @@ require_once './DB/bd.php';
 
 Class PagosCajaModel{
 
+    static public function local($tabla){
+        $sql = "SELECT * FROM $tabla WHERE id = 1";
+        $conexion = Conexion::conectar()->prepare($sql);
+        $conexion->execute();
+        return $conexion->fetchAll();
+
+        $conexion->close();
+        $conexion = NULL;
+    }
+
+    static public function metodos_pago($tabla){
+        $sql = "SELECT * FROM $tabla";
+
+        $conexion = Conexion::conectar()->prepare($sql);
+        $conexion->execute();
+        return $conexion->fetchALL();
+
+        $conexion->close();
+        $conexion==NULL;
+    }
+
     static public function buscarProducto($tabla,$buscar){
         $sql = "SELECT * FROM $tabla WHERE nombre_producto = '$buscar' ";
         $conexion = Conexion::conectar()->prepare($sql);
@@ -59,7 +80,7 @@ Class PagosCajaModel{
     }
 
     static public function listaDetalleVenta($tabla,$idVenta){
-        $sql="SELECT p.lote,p.nombre_producto AS 'producto',p.precio,dv.cantidad,dv.id as 'idpv',v.* FROM $tabla dv INNER JOIN productos p ON dv.fk_productos = p.id INNER JOIN ventas v ON  dv.fk_ventas = v.id WHERE v.id = $idVenta ";
+        $sql="SELECT p.lote,p.nombre_producto AS 'producto',p.marca,p.precio,dv.cantidad,dv.id as 'idpv',v.* FROM $tabla dv INNER JOIN productos p ON dv.fk_productos = p.id INNER JOIN ventas v ON  dv.fk_ventas = v.id WHERE v.id = $idVenta ";
 
         $conexion=Conexion::conectar()->prepare($sql);
         $conexion->execute();
@@ -93,6 +114,33 @@ Class PagosCajaModel{
         $conexion->close();
         $conexion = NULL;
     }
+
+    static public function total($tabla,$idVenta){
+        $sql="SELECT SUM(p.precio)+(SUM(p.precio)*0.18) AS 'total' FROM productos p INNER JOIN $tabla dv ON p.id = dv.fk_productos 
+        WHERE dv.fk_ventas = $idVenta ";
+
+        $conexion=Conexion::conectar()->prepare($sql);
+        $conexion->execute();
+        return $conexion->fetchAll();
+
+        $conexion->close();
+        $conexion = NULL;
+    }
+
+    static public function ordenDetalleVenta($tabla,$datos){
+        $sql = "";
+        $conexion = Conexion::conectar()->prepare($sql);
+        $conexion->bindParam(":",$datos[''],PDO::PARAM_STR);
+        if($conexion->execute()){
+            return 'ok';
+        }else{
+            print_r(Conexion::conectar()->errorInfo());
+        }
+
+        $conexion->close();
+        $conexion = NULL;
+    }
+
 
 }
 
