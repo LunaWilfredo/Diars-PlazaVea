@@ -23,11 +23,11 @@
                 </div>
                 <div class="col-lg">
                     <!-- Title -->
-                    <p class="text-center my-2">Registro de Datos</p>
+                    <p class="text-center my-2"> Datos</p>
                     <!-- Registro de producto entregado por cliente -->
                     <div class="row d-flex">
                         <div class="col-lg">
-                            <label for="">Codigo de Comprobante de Pago:</label>
+                            <label for="">Codigo Comprobante de Pago:</label>
                             <input type="text" class="form-control" placeholder="Codigo de comprobante">
                             <label for="">Fecha de Devolucion:</label>
                             <input type="text" class="form-control" name="fechad" value="30/09/2021" readonly>

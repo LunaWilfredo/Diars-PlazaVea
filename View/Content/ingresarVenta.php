@@ -21,7 +21,7 @@
         // $vta=$_POST['idventa'];
         $registro = PagosCajaController::registroDetalleVenta();
         if($registro == 'ok'){
-            echo "<div class='alert alert-success'>Producto Registrado</div>";
+            // echo "<div class='alert alert-success'>Producto Registrado</div>";
         }
     }
     if(!empty($idSecret)){
