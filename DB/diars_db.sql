@@ -151,10 +151,10 @@ CREATE TABLE ventas(
 	fecha_venta VARCHAR(20)
 )ENGINE INNODB;
 
-
 INSERT INTO ventas (fecha_venta) VALUES (CURDATE());
 
 SELECT * FROM ventas ORDER BY id DESC
+
 
 CREATE TABLE detalle_ventas(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
@@ -171,7 +171,12 @@ INSERT INTO detalle_ventas (cantidad,fk_productos,fk_ventas) VALUES (1,3,1);
 SELECT *FROM detalle_ventas
 
 SELECT p.lote,p.nombre_producto AS 'producto',p.precio,dv.cantidad,dv.id,v.* FROM detalle_ventas dv 
-INNER JOIN productos p ON dv.fk_productos = p.id INNER JOIN ventas v ON  dv.fk_ventas = v.id 
+INNER JOIN productos p ON dv.fk_productos = p.id INNER JOIN ventas v ON  dv.fk_ventas = v.id WHERE v.id =3
+
+UPDATE productos p INNER JOIN detalle_ventas dv ON dv.fk_productos = p.id 
+SET p.cantidad = p.cantidad - dv.cantidad WHERE dv.fk_ventas = 6 ; 
+
+SELECT * FROM productos
 
 /*sub total*/
 SELECT SUM(p.precio*dv.cantidad) AS 'subtotal' FROM productos p INNER JOIN detalle_ventas dv ON p.id = dv.fk_productos 

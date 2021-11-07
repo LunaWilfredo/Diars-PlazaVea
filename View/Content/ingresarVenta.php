@@ -36,7 +36,8 @@
 
     if(isset($_POST['btn-operaciones'])){
         $orden = PagosCajaController::ordenDetalleVenta();
-        if($orden == 'ok'){
+        $stock = PagosCajaController::actualizarStock();
+        if($orden == 'ok' && $stock == 'ok'){
             echo '<script>
                     if(window.history.replaceState){
                         window.history.repaceState(null,null,window.location.href);
@@ -93,7 +94,7 @@
                                     <tr>
                                         <td>
                                             <?=$pro['lote']?>
-                                            <input type="text" value="<?=$pro['id']?>" name='producto'>
+                                            <input type="hidden" value="<?=$pro['id']?>" name='producto'>
                                         </td>
                                         <td><?=$pro['nombre_producto']?> <?=$pro['marca']?></td>
                                         <td>
@@ -230,18 +231,18 @@
                             <h6 class="text-dark">SubTotal(s/.):</h6>
                             <h6 class=""><?=$sub['subtotal'].'.00' ?></h6>
 
-                            <input type="text" value="<?=$sub['subtotal']?>" name="subtotal" class="form-control">
+                            <input type="hidden" value="<?=$sub['subtotal']?>" name="subtotal" class="form-control">
                         <?php endforeach;?>    
                     </div>
                     <div class="col-lg col-md col-sm">
                         <h6 class="text-dark">IGV (s/.):</h6>
                         <h6 class="">0.18</h6>
-                        <input type="text" value="0.18" name="igv" class="form-control">
+                        <input type="hidden" value="0.18" name="igv" class="form-control">
                     </div>
                     <div class="col-lg col-md col-sm">
                         <h6 class="text-dark">Total (s/.):</h6>
                         <h5 class="text-primary"><?=$total['total']?></h5>
-                        <input type="text" value="<?=$total['total']?>" name="total" class="form-control">
+                        <input type="hidden" value="<?=$total['total']?>" name="total" class="form-control">
                     </div>
                 </div>
 

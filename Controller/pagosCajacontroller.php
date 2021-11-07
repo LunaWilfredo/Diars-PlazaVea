@@ -117,6 +117,15 @@ class PagosCajaController{
         }
     }
 
+    static public function actualizarStock(){
+        if(isset($_POST['btn-operaciones']) && isset($_POST['idventa'])){
+            $tabla = "productos";
+            $idVenta=$_POST['idventa'];
+            $respuesta = PagosCajaModel::actualizarStock($tabla,$idVenta);
+            return $respuesta;
+        }
+    }
+
 }
 
 

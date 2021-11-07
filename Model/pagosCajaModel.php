@@ -142,6 +142,19 @@ Class PagosCajaModel{
         $conexion = NULL;
     }
 
+    static public function actualizarStock($tabla,$idVenta){
+        $sql = " UPDATE $tabla p INNER JOIN detalle_ventas dv ON dv.fk_productos = p.id SET p.cantidad = p.cantidad - dv.cantidad WHERE dv.fk_ventas = $idVenta";
+        $conexion = Conexion::conectar()->prepare($sql);
+        if($conexion->execute()){
+            return 'ok';
+        }else{
+            print_r(Conexion::conectar()->errorInfo());
+        }
+
+        $conexion->close();
+        $conexion = NULL;
+    }
+
 
 }
 
