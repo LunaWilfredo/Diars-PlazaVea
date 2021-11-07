@@ -156,28 +156,6 @@ INSERT INTO ventas (fecha_venta) VALUES (CURDATE());
 
 SELECT * FROM ventas ORDER BY id DESC
 
-
-CREATE TABLE operaciones (
-	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	cod_comprobante VARCHAR(20) NOT NULL,  /*COP+DNI*/
-	dni_cliente VARCHAR(8) NOT NULL,
-	fecha_venta VARCHAR(20) NOT NULL ,
-	monto_pagar INT NOT NULL ,
-	fk_usuario INT NOT NULL ,
-	fk_local INT NOT NULL ,
-	fk_metodo_pago INT NOT NULL ,
-	fk_venta INT NOT NULL,
-	CONSTRAINT fk_usuario FOREIGN KEY (fk_usuario) REFERENCES usuarios(id),
-	CONSTRAINT fk_local FOREIGN KEY (fk_local) REFERENCES locales(id),
-	CONSTRAINT fk_metodo_pago FOREIGN KEY (fk_metodo_pago) REFERENCES metodos_pago(id),
-	CONSTRAINT fk_venta FOREIGN KEY (fk_venta) REFERENCES ventas(id)
-)ENGINE INNODB ;
-
-SELECT * FROM operaciones;
-
-INSERT INTO operaciones (dni_cliente,fecha_venta,monto_pagar,fk_usuario,fk_local,fk_metodo_pago,fk_venta) 
-VALUES (75388728,CURDATE(),120,1,1,1,1)
-
 CREATE TABLE detalle_ventas(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 	cantidad INT NOT NULL ,
@@ -196,21 +174,47 @@ SELECT p.lote,p.nombre_producto AS 'producto',p.precio,dv.cantidad,dv.id,v.* FRO
 INNER JOIN productos p ON dv.fk_productos = p.id INNER JOIN ventas v ON  dv.fk_ventas = v.id 
 
 /*sub total*/
-SELECT SUM(p.precio) AS 'subtotal' FROM productos p INNER JOIN detalle_ventas dv ON p.id = dv.fk_productos 
-WHERE dv.fk_ventas = 2
+SELECT SUM(p.precio*dv.cantidad) AS 'subtotal' FROM productos p INNER JOIN detalle_ventas dv ON p.id = dv.fk_productos 
+WHERE dv.fk_ventas = 4
 
 /*total*/
-SELECT SUM(p.precio)+(SUM(p.precio)*0.18) FROM productos p INNER JOIN detalle_ventas dv ON p.id = dv.fk_productos 
-WHERE dv.fk_ventas = 2
+SELECT SUM(p.precio*dv.cantidad)+(SUM(p.precio*dv.cantidad)*0.18) as 'total' FROM productos p INNER JOIN detalle_ventas dv ON p.id = dv.fk_productos 
+WHERE dv.fk_ventas = 4
 
 /*vista detallada de precios y productos*/
-SELECT p.precio FROM productos p INNER JOIN detalle_ventas dv ON p.id = dv.fk_productos 
-WHERE dv.fk_ventas = 2
+SELECT p.precio,dv.cantidad FROM productos p INNER JOIN detalle_ventas dv ON p.id = dv.fk_productos 
+WHERE dv.fk_ventas = 4
 
 SELECT SUM(precio) FROM productos
 
+CREATE TABLE operaciones (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	comp_pago VARCHAR(20) NOT NULL,  /*comprobante de venta : CV+DNI*/
+	dni_cliente VARCHAR(8) NOT NULL,
+	correo_cliente VARCHAR (100) NOT NULL, /*correo de cliente de envio de boleta de pago*/
+	fecha_venta VARCHAR(20) NOT NULL ,
+	monto_pagar INT NOT NULL ,
+	num_tarjeta VARCHAR(20) ,
+	metodo VARCHAR(20) ,
+	num_cuotas INT  ,
+	fk_usuario INT NOT NULL ,
+	fk_local INT NOT NULL ,
+	fk_metodo_pago INT NOT NULL ,
+	fk_venta INT NOT NULL,
+	CONSTRAINT fk_usuario FOREIGN KEY (fk_usuario) REFERENCES usuarios(id),
+	CONSTRAINT fk_local FOREIGN KEY (fk_local) REFERENCES locales(id),
+	CONSTRAINT fk_metodo_pago FOREIGN KEY (fk_metodo_pago) REFERENCES metodos_pago(id),
+	CONSTRAINT fk_venta FOREIGN KEY (fk_venta) REFERENCES ventas(id)
+)ENGINE INNODB ;
+
+SELECT * FROM operaciones;
+/*DROP TABLE operaciones*/
+
+INSERT INTO operaciones (comp_pago,dni_cliente,correo_cliente,fecha_venta,monto_pagar,num_tarjeta,metodo,num_cuotas,fk_usuario,fk_local,fk_metodo_pago,fk_venta) 
+VALUES ('CV75388728',75388728,'correo@mail.com',CURDATE(),120,0,0,0,2,1,1,1)
+
 /*---------------------------------*/
-/*tabla comprobantes para comprobantes de ventas y cambios */
+/*comprobantes comprobantes de ventas y cambios dentro de mismas tablas */
 
 SHOW TABLES 
 DESCRIBE roles

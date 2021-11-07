@@ -95,12 +95,13 @@ class PagosCajaController{
     }
 
     static public function ordenDetalleVenta(){
-        if(isset($_POST['btn-operaciones'])){
+        if(isset($_POST['btn-operaciones']) && isset($_POST['idventa'])){
             $tabla = "operaciones";
             $datos = array(
+                "comp_pago"=>$_POST['codigoventa'],
                 "dni_cliente"=>$_POST['cliente'],
                 "correo_cliente"=>$_POST['correo'],
-                "fecha_venta"=>$_POST['fecha'],
+                // "fecha_venta"=>$_POST['fecha'],
                 "monto_pagar"=>$_POST['total'],
                 "num_tarjeta"=>$_POST['tarjeta'],
                 "metodo"=>$_POST['metodo'],
@@ -110,7 +111,9 @@ class PagosCajaController{
                 "fk_metodo_pago"=>$_POST['metodopago'],
                 "fk_venta"=>$_POST['idventa']
             );
-            var_dump($datos);
+            // var_dump($datos);
+            $respuesta = PagosCajaModel::ordenDetalleVenta($tabla,$datos);
+            return $respuesta;
         }
     }
 

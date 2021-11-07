@@ -11,8 +11,6 @@
     include_once 'Controller/pagosCajaController.php';
     include_once 'Controller/pedidosProveedorController.php';
     include_once 'Controller/reposicionProductosController.php';
-    // Controllador de correo
-    include_once 'Controller/MailController.php';
 
 ?>
 <!-- HEADER AND LATERAL -->

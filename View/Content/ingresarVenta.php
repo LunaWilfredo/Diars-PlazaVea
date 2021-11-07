@@ -36,8 +36,23 @@
 
     if(isset($_POST['btn-operaciones'])){
         $orden = PagosCajaController::ordenDetalleVenta();
-        $mail = MailController::mailBoletaventa();
+        if($orden == 'ok'){
+            echo '<script>
+                    if(window.history.replaceState){
+                        window.history.repaceState(null,null,window.location.href);
+                    }
+                </script>';
+            echo " <div class='alert alert-success'>Envio Exitoso</div>
+            <script>
+                setTimeout(function(){
+                    window.location = 'body.php?pagina=menuVenta';
+                },1000);
+            </script>
+            ";  
+        }
     }
+
+    
 
 ?>
 <section class="">
@@ -146,14 +161,10 @@
                     <div class="border text-center p-2">
                         <!-- Boton de accion -->
                         <div class="text-center">
-                            <!-- <input type="submit" value="Continuar Venta" class="btn btn-danger btn-md btn-rounded "> -->
                             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#datosVenta">
                                     Continuar Venta
                             </button>
                         </div>
-                        <!-- <div class="text-center">
-                            <a href="#!" class="text-decoration-none text-secondary">Imprimir voucher</a>
-                        </div> -->
                     </div>
                 </div>
             </div>
@@ -177,18 +188,19 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-lg col-md col-sm">
-                    <input type="text" value="<?=$idVenta['id']?>" class="form-control" name="idventa" id="idventa">
+                    <input type="hidden" value="<?=$idVenta['id']?>" class="form-control" name="idventa" id="idventa">
+                    <input type="hidden" value="CV<?php echo rand();?>" class="form-control" name="codigoventa" id="codigoventa">
                         <div class="form-group">
                             <label for="cliente">Cliente</label>
                             <input type="text" class="form-control" id="cliente" name="cliente" placeholder="DNI Cliente" required>
                         </div>
                     </div>
-                    <div class="col-lg col-md col-sm">
+                    <!-- <div class="col-lg col-md col-sm">
                         <div class="form-group">
                             <label for="fecha">Fecha</label>
-                            <input type="text" class="form-control" id="fecha" value="<?= date('d/m/Y') ?>" name="fecha" readonly>
+                            <input type="text" class="form-control" id="fecha" value="<?//= date('d/m/Y') ?>" name="fecha" readonly>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="row">
                     <div class="col-lg col-md col-sm">
@@ -196,7 +208,7 @@
                             <label for="local">Local</label>
                             <?php foreach($local as $local):?>
                             <input type="text" class="form-control" value="<?=$local['nombre_local']?>" readonly>
-                            <input type="text" class="form-control" id="local" value="<?=$local['id']?>" name="local">
+                            <input type="hidden" class="form-control" id="local" value="<?=$local['id']?>" name="local">
                             <?php endforeach;?>
                         </div>
                     </div>
@@ -205,7 +217,7 @@
                             <label for="cajero">Cajero</label>
                             <?php foreach($cajero as $key => $cajero):?>
                             <input type="text" class="form-control" value="CJ<?=$cajero['username']?>" readonly>  
-                            <input type="text" class="form-control" id="cajero" value="<?=$cajero['id']?>" name="cajero" readonly>
+                            <input type="hidden" class="form-control" id="cajero" value="<?=$cajero['id']?>" name="cajero" readonly>
                             <?php endforeach;?> 
                         </div>
                     </div>
@@ -251,7 +263,7 @@
                         <!-- Condicion de Tarjeta credito/debito-->
                         <div class="form-group">
                             <label for="tarjeta">N° Tarjeta</label>
-                            <input type="text" class="form-control" id="tarjeta" value="192-000-1222-000" name="tarjeta">
+                            <input type="text" class="form-control" id="tarjeta" value="000-000-000-000" name="tarjeta">
                         </div>
                     </div>
                     <!-- Condicion de tarjeta credito cuotas -->
@@ -259,6 +271,7 @@
                         <div class="form-group">
                             <label for="cuotas">Metodo</label>
                             <select name="metodo" id="cuotas" class="form-control" value="">
+                                <option value="0">Select</option>
                                 <option value="directo">Directo</option>
                                 <option value="cuotas">Cuotas</option>
                             </select>
@@ -268,7 +281,7 @@
                     <div class="col-lg col-md col-sm">
                         <div class="form-group">
                             <label for="cuotas">Cuotas</label>
-                            <input type="text" class="form-control" id="cuotas" value="1" name="cuotas">
+                            <input type="text" class="form-control" id="cuotas" value="0" name="cuotas">
                         </div>
                     </div>
                 </div>
@@ -286,7 +299,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="refund">Impresion de Comprobante de Pago</h5>
+                <h5 class="modal-title" id="refund">Envio de Comprobante de Pago</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -306,3 +319,5 @@
     </div>
 </div>
 </form>
+
+
