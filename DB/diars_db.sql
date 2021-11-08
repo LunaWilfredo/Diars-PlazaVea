@@ -173,10 +173,9 @@ SELECT *FROM detalle_ventas
 SELECT p.lote,p.nombre_producto AS 'producto',p.precio,dv.cantidad,dv.id,v.* FROM detalle_ventas dv 
 INNER JOIN productos p ON dv.fk_productos = p.id INNER JOIN ventas v ON  dv.fk_ventas = v.id WHERE v.id =3
 
+/*Actualizacion de estock despues de venta*/
 UPDATE productos p INNER JOIN detalle_ventas dv ON dv.fk_productos = p.id 
 SET p.cantidad = p.cantidad - dv.cantidad WHERE dv.fk_ventas = 6 ; 
-
-SELECT * FROM productos
 
 /*sub total*/
 SELECT SUM(p.precio*dv.cantidad) AS 'subtotal' FROM productos p INNER JOIN detalle_ventas dv ON p.id = dv.fk_productos 
@@ -219,7 +218,32 @@ INSERT INTO operaciones (comp_pago,dni_cliente,correo_cliente,fecha_venta,monto_
 VALUES ('CV75388728',75388728,'correo@mail.com',CURDATE(),120,0,0,0,2,1,1,1)
 
 /*---------------------------------*/
+/*Ordenes de  Devoluciones*/
+
+CREATE TABLE devoluciones(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	num_comp VARCHAR (20) NOT NULL,
+	monto_dev INT NOT NULL ,
+	fecha_dev VARCHAR(20) NOT NULL ,
+	motivo_dev VARCHAR (100) ,
+	cod_comp_dev VARCHAR(20) NOT NULL ,
+	fk_usuario_c INT NOT NULL , 
+	CONSTRAINT fk_usuario_c FOREIGN KEY (fk_usuario_c) REFERENCES usuarios(id)
+)ENGINE INNODB;
+
+SELECT * FROM devoluciones
+
+DROP TABLE devoluciones
+
+SELECT dv.*,u.uname AS 'cajero' FROM devoluciones dv INNER JOIN usuarios u ON dv.fk_usuario_c = u.id
+
+INSERT INTO devoluciones (num_comp,monto_dev,fecha_dev,motivo_dev,cod_comp_dev,fk_usuario_c) 
+VALUES ('ORD00001',CURDATE(),'no gusta producto','CV2127737705',1)
+
 /*comprobantes comprobantes de ventas y cambios dentro de mismas tablas */
+
+
+
 
 SHOW TABLES 
 DESCRIBE roles
