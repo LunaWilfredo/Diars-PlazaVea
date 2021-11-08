@@ -1,3 +1,6 @@
+<?php
+
+?>
 <section class="">
     <form action="" method="post">
         <div class="container-fluid">
@@ -27,16 +30,16 @@
                     <!-- Registro de producto entregado por cliente -->
                     <div class="row d-flex">
                         <div class="col-lg">
-                            <label for="">Codigo Comprobante de Pago:</label>
-                            <input type="text" class="form-control" placeholder="Codigo de comprobante">
+                            <label for="compago">Codigo Comprobante de Pago:</label>
+                            <input type="text" class="form-control" placeholder="Codigo de comprobante" name="compago" id="compago">
                             <label for="">Fecha de Devolucion:</label>
-                            <input type="text" class="form-control" name="fechad" value="30/09/2021" readonly>
+                            <input type="text" class="form-control" name="fechadev" value="<?=date('d-M-Y') ?>" readonly>
                         </div>
                         <div class="col-lg">
                             <label for="">Local :</label>
-                            <input type="text" class="form-control" name="" value="Comas" readonly>
+                            <input type="text" class="form-control" name="local" value="Comas" readonly>
                             <label for="">Cajero :</label>
-                            <input type="text" class="form-control" name="" value="<?=$_SESSION['usuario']?>" readonly>
+                            <input type="text" class="form-control" name="" value="CJ<?=$_SESSION['usuario']?>" readonly>
                             
                         </div>
                         <div class="col-lg">

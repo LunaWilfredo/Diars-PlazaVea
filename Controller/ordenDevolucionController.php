@@ -20,10 +20,18 @@ class CambioDevolucionController{
         return $respuesta;
     }
 
-    
-
     public function generarDevolucion($cliente,$tipoOperacion){
+        if(isset($_POST['']) && !empty($_POST[''])){
+            $tabla = "";
+            $datos = array(
+                
+            );
+        }
         
+    }
+
+    static public function listaDevoluciones(){
+
     }
 
     public function comprobante($idOperacion){
