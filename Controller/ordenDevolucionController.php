@@ -20,18 +20,27 @@ class CambioDevolucionController{
         return $respuesta;
     }
 
-    public function generarDevolucion($cliente,$tipoOperacion){
-        if(isset($_POST['']) && !empty($_POST[''])){
-            $tabla = "";
+    static public function generarDevolucion(){
+        if(isset($_POST['compago']) && !empty($_POST['compago'])){
+            $tabla = "devoluciones";
             $datos = array(
-                
+                "num_comp"=>$_POST['compago'],
+                "monto_dev"=>$_POST['monto'],
+                "fecha_dev"=>$_POST['fechadev'],
+                "motivo_dev"=>$_POST['motivo'],
+                "cod_comp_dev"=>$_POST['num_orden'],
+                "fk_usuario_c"=>$_POST['cajero']
             );
+            $respuesta = CambioDevolucionModel::generarDevolucion($tabla,$datos);
+            return $respuesta;
         }
         
     }
 
     static public function listaDevoluciones(){
-
+        $tabla = "devoluciones";
+        $respuesta = CambioDevolucionModel::listaDevoluciones($tabla);
+        return $respuesta;
     }
 
     public function comprobante($idOperacion){
