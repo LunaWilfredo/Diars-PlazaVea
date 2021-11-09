@@ -2,7 +2,6 @@ CREATE DATABASE diars;
 USE diars;
 
 /*tabla de usuarios*/
-
 CREATE TABLE roles(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	rname VARCHAR (20) NOT NULL 
@@ -233,8 +232,6 @@ CREATE TABLE devoluciones(
 
 SELECT * FROM devoluciones
 
-DROP TABLE devoluciones
-
 SELECT dv.*,u.uname AS 'cajero' FROM devoluciones dv INNER JOIN usuarios u ON dv.fk_usuario_c = u.id
 
 INSERT INTO devoluciones (num_comp,monto_dev,fecha_dev,motivo_dev,cod_comp_dev,fk_usuario_c) 
@@ -242,8 +239,32 @@ VALUES ('ORD00001',CURDATE(),'no gusta producto','CV2127737705',1)
 
 /*comprobantes comprobantes de ventas y cambios dentro de mismas tablas */
 
+/*Exchange*/
+CREATE TABLE if NOT EXISTS detalle_exchange(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	cantidad_c INT NOT NULL, 
+	usuario VARCHAR (20) NOT NULL ,
+	fk_producto_c INT NOT NULL ,
+	CONSTRAINT fk_producto_c FOREIGN KEY (fk_producto_c) REFERENCES productos(id)
+)ENGINE INNODB;
 
+SELECT * FROM detalle_exchange
 
+SELECT ex.id AS 'idcambio',ex.cantidad_c AS 'cant_cambio',ex.usuario,p.* FROM detalle_exchange ex INNER JOIN productos p 
+ON ex.fk_producto_c = p.id WHERE ex.usuario = '75388728'
+
+INSERT INTO detalle_exchange(cantidad_c,usuario,fk_producto_c)VALUES(2,'admin',3)
+
+CREATE TABLE if NOT EXISTS generar_exchange(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+	comp_v VARCHAR(20) NOT NULL ,
+	comp_c VARCHAR (20) NOT NULL ,
+	usuario VARCHAR (20) NOT NULL 
+)ENGINE INNODB;
+
+SELECT * FROM generar_exchange
+
+INSERT INTO generar_exchange (comp_v,comp_c,usuario) VALUES ()
 
 SHOW TABLES 
 DESCRIBE roles

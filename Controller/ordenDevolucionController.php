@@ -43,8 +43,55 @@ class CambioDevolucionController{
         return $respuesta;
     }
 
-    public function comprobante($idOperacion){
+    static public function busquedaProducto(){
+        if(!empty($_POST['producto']) && isset($_POST['btn-buscar']) ){
+            $tabla = "productos";
+            $idproducto = $_POST['producto'];
+            $respuesta = CambioDevolucionModel::busquedaProducto($tabla,$idproducto);
+            return $respuesta;
+        }
+    }
 
+    static public function registroProductoCambio(){
+        if(isset($_POST['btn-registro']) && isset($_POST['idproducto']) ){
+            $tabla = "detalle_exchange";
+            $datos = array(
+                "cantidad"=>$_POST['cantidad'],
+                "usuario"=>$_SESSION['usuario'],
+                "fk_producto_c"=>$_POST['idproducto']
+            );
+            $respuesta = CambioDevolucionModel::registroProductoCambio($tabla,$datos);
+            return $respuesta;
+        }
+    }
+
+    static public function verCambios(){
+        $tabla ="detalle_exchange";
+        $user = $_SESSION['usuario'];
+        $respuesta = CambioDevolucionModel::verCambios($tabla,$user);
+        return $respuesta; 
+    }
+
+    static public function eliminarCambio(){
+        if(isset($_GET['dlt'])){
+            $tabla = "detalle_exchange";
+            $id = $_GET['dlt'];
+            $respuesta = CambioDevolucionModel::eliminarCambio($tabla,$id);
+            return $respuesta;
+        }
+    }
+
+    static public function generarExchange(){
+        if(isset($_POST['guardar']) && !empty($_POST['comprobante'])){
+            $tabla = 'generar_exchange';
+            $datos = array(
+                "comp_v"=>$_POST['comprobante'],
+                "comp_c"=>$_POST['compcambio'],
+                "usuario"=>$_SESSION['usuario']
+            );
+            $respuesta = CambioDevolucionModel::generarExchange($tabla,$datos);
+            return $respuesta;
+        }
     }
 
 

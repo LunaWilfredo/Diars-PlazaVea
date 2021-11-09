@@ -52,6 +52,64 @@ Class CambioDevolucionModel{
         return $conexion->fetchAll();
     }
 
+    static public function busquedaProducto($tabla,$idproducto){
+        $sql = "SELECT * FROM $tabla WHERE nombre_producto = '$idproducto' OR marca = '$idproducto' OR lote = '$idproducto' ";
+        $conexion = Conexion::conectar()->prepare($sql);
+        $conexion->execute();
+        return $conexion->fetchAll();
+    }
+
+    static public function registroProductoCambio($tabla,$datos){
+        $sql="INSERT INTO $tabla (cantidad_c,usuario,fk_producto_c)VALUES(:cantidad,:usuario,:fk_producto_c)";
+        $conexion=Conexion::conectar()->prepare($sql);
+        $conexion->bindParam(":cantidad",$datos['cantidad'],PDO::PARAM_STR);
+        $conexion->bindParam(":usuario",$datos['usuario'],PDO::PARAM_STR);
+        $conexion->bindParam(":fk_producto_c",$datos['fk_producto_c'],PDO::PARAM_STR);
+        if($conexion->execute()){
+            return 'ok';
+        }else{
+            print_r(Conexion::conectar()->errorInfo());
+        }
+
+        $conexion->close();
+        $conexion = NULL;
+    }
+
+    static public function verCambios($tabla,$user){
+        $sql = "SELECT ex.id AS 'idcambio',ex.cantidad_c AS 'cant_cambio',ex.usuario,p.* FROM $tabla ex INNER  JOIN productos p ON ex.fk_producto_c = p.id WHERE ex.usuario = '$user' ";
+        $conexion = Conexion::conectar()->prepare($sql);
+        $conexion->execute();
+        return $conexion->fetchAll();
+    }
+
+    static public function eliminarCambio($tabla,$id){
+        $sql="DELETE FROM $tabla WHERE id = $id ";
+        $conexion=Conexion::conectar()->prepare($sql);
+        if($conexion->execute()){
+            return 'ok';
+        }else{
+            print_r(Conexion::conectar()->errorInfo());
+        }
+        $conexion->close();
+        $conexion = NULL;
+    }
+
+    static public function generarExchange($tabla,$datos){
+        $sql="INSERT INTO $tabla (comp_v,comp_c,usuario) VALUES (:comp_v,:comp_c,:usuario)";
+        $conexion=Conexion::conectar()->prepare($sql);
+        $conexion->bindParam(":comp_v",$datos['comp_v'],PDO::PARAM_STR);
+        $conexion->bindParam(":comp_c",$datos['comp_c'],PDO::PARAM_STR);
+        $conexion->bindParam(":usuario",$datos['usuario'],PDO::PARAM_STR);
+        if($conexion->execute()){
+            return 'ok';
+        }else{
+            print_r(Conexion::conectar()->errorInfo());
+        }
+
+        $conexion->close();
+        $conexion = NULL;
+    }
+
     
 
 }
