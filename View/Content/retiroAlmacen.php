@@ -4,10 +4,30 @@
     }
 
     if(isset($_POST['add']) && !empty($_POST['producto_id'])){
-        $retiro = AlmacenController::retiroAlmacen();
+        $retiro = AlmacenController::solicitarProductos();
         echo 'btn presioando '.$_POST['producto_id'].$_POST['cantidad_r'];
     }
 
+    $solicitado = AlmacenController::listaProductoSolicitado();
+
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+        $estado = AlmacenController::actualizarEstado();
+        if($estado == 'ok'){
+            echo '<script>
+                    if(window.history.replaceState){
+                        window.history.repaceState(null,null,window.location.href);
+                    }
+                </script>';
+            echo "
+            <script>
+                setTimeout(function(){
+                    window.location = 'body.php?pagina=retiroAlmacen';
+                },1000);
+            </script>
+            ";  
+        }
+    }
 ?>
 <section class="">
     <form action="" method="post">
@@ -50,7 +70,7 @@
                                         <td><?=$i?></td>
                                         <td>
                                             <?=$lista['lote']?>
-                                            <input type="text" name="producto_id" class="form-control" value="<?=$lista['id']?>">
+                                            <input type="hidden" name="producto_id" class="form-control" value="<?=$lista['id']?>">
                                         </td>
                                             
                                         <td><?=$lista['nombre_producto']?></td>
@@ -89,20 +109,25 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php $i=0; foreach ($solicitado as $solicitado): $i++;?>
                             <tr>
-                                <td><a href="" class="text-dark text-decoration-none">1</a></td>
-                                <td>COD0001</td>
-                                <td>Producto Seleccionado</td>
-                                <td>20</td>
-                                <td>Aceites</td>
-                                <td><?= date("d-M-Y")?></td>
-                                <td><?=$_SESSION['usuario']?></td>
-                                <td>Pendiente</td>
+                                <td><?=$i?></td>
+                                <td><?=$solicitado['lote']?></td>
+                                <td><?=$solicitado['nombre_producto']?></td>
+                                <td><?=$solicitado['cantidad_r']?></td>
+                                <td><?=$solicitado['nombre_categoria']?></td>
+                                <td><?=$solicitado['fecha_retiro']?></td>
+                                <td><?=$solicitado['usuario_e']?></td>
+                                <td><?=$solicitado['estado_r']?></td>
+                                <?php if($solicitado['estado_r'] == 'PENDIENTE'): ?>
                                 <td>
-                                    <a href="" class="btn btn-success"><i class="fas fa-clipboard-check"></i></a>
-                                    <!-- <a href="" class="btn btn-primary"><i class="far fa-edit"></i></a> -->
+                                    <a href="body.php?pagina=retiroAlmacen&id=<?=$solicitado['idabastecimiento']?>" class="btn btn-success"><i class="fas fa-clipboard-check"></i></a>
                                 </td>
+                                <?php else: ?>
+                                    <td><i class="fas fa-check-circle text-success"></i></td>
+                                <?php endif; ?>
                             </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>

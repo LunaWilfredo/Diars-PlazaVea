@@ -105,9 +105,9 @@ VALUES ('Pan','Bimbo','L0025',10,'10-11-2021',CURDATE(),5);
 
 ALTER TABLE productos ADD COLUMN precio INT NOT NULL;
 
-DELETE FROM productos WHERE id=11
+/*DELETE FROM productos WHERE id=11*/
 
-UPDATE productos SET cantidad = cantidad + 1 WHERE id = 1
+/*UPDATE productos SET cantidad = cantidad + 1 WHERE id = 1*/
 
 SELECT * FROM productos
 
@@ -116,7 +116,7 @@ SELECT * FROM productos
 SELECT * FROM productos p INNER JOIN categorias c ON p.fk_categoria = c.id
 
 SELECT p.*,c.nombre_categoria AS 'categoria' FROM productos p INNER JOIN categorias c 
-ON p.fk_categoria = c.id
+ON p.fk_categoria = c.id ORDER BY p.cantidad ASC
 
 /*---------------------------------*/
 CREATE TABLE pasillos(
@@ -265,6 +265,24 @@ CREATE TABLE if NOT EXISTS generar_exchange(
 SELECT * FROM generar_exchange
 
 INSERT INTO generar_exchange (comp_v,comp_c,usuario) VALUES ()
+
+/*retiro producto*/
+CREATE TABLE if NOT EXISTS abastecimiento(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+	cantidad_r INT NOT NULL ,
+	fecha_retiro VARCHAR(20)NOT NULL ,
+	usuario_e INT NOT NULL ,
+	estado_r VARCHAR (20) NOT NULL,
+	fk_productos_r INT NOT NULL,
+	CONSTRAINT fk_productos_r FOREIGN KEY (fk_productos_r) REFERENCES productos (id)
+)ENGINE INNODB;
+
+INSERT INTO abastecimiento(cantidad_r,fecha_retiro,usuario_e,estado_r,fk_productos_r)VALUES ();
+
+SELECT * FROM abastecimiento
+
+SELECT a.id AS 'idabastecimiento',a.*,p.*,c.* FROM abastecimiento a INNER JOIN productos p ON a.fk_productos_r = p.id INNER JOIN categorias c 
+ON p.fk_categoria = c.id
 
 SHOW TABLES 
 DESCRIBE roles

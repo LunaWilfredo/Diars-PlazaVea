@@ -72,23 +72,32 @@ class AlmacenController{
         }
     }
 
-    static public function retiroAlmacen(){
-        if(isset($_POST['efectuar']) && !empty($_POST['producto_id'])){
+    static public function solicitarProductos(){
+        $tabla = "abastecimiento";
+        $datos = array(
+            "cantidad_r"=>$_POST['cantidad_r'],
+            "usuario_c"=>$_SESSION['usuario'],
+            "fk_productos_c"=>$_POST['producto_id']
+        );
+        var_dump($datos);
+        $respuesta = AlmacenModel::solicitarProductos($tabla,$datos);
+        return $respuesta;
+    }
+
+    static public function listaProductoSolicitado(){
+        $tabla = "abastecimiento";
+        $respuesta = AlmacenModel::listaProductoSolicitado($tabla);
+        return $respuesta;
+    }
+
+    static public function actualizarEstado(){
+        if(isset($_GET['id'])){
             $tabla = "abastecimiento";
-            $datos = array(
-                "cantidad_r"=>$_POST['cantidad_r'],
-                "usuario_e"=>$_SESSION['usuario'],
-                "fk_productos_r"=>$_POST['producto_id']
-            );
-            var_dump($datos);
-            var_dump($tabla);
-            $respuesta = AlmacenModel::retiroAlmacen($tabla,$datos);
+            $id = $_GET['id'];
+            $respuesta = AlmacenModel::actualizarEstado($tabla,$id);
             return $respuesta;
         }
     }
-
-
-
 }
 
 ?>

@@ -92,12 +92,12 @@ Class AlmacenModel{
         $conexion = NULL;
     }
 
-    static public function retiroAlmacen($tabla,$datos){
-        $sql="INSERT INTO abastecimiento(cantidad_r,fecha_retiro,usuario_e,estado_r,fk_productos_r) VALUES (:cantidad_r,CURDATE(),:usuario_e,'PENDIENTE',:fk_productos_r)";
+    static public function solicitarProductos($tabla,$datos){
+        $sql="INSERT INTO $tabla (cantidad_r,fecha_retiro,usuario_e,estado_r,fk_productos_r) VALUES (:cantidad_r,CURDATE(),:usuario_c,'PENDIENTE',:fk_productos_c)";
         $conexion = Conexion::conectar()->prepare($sql);
         $conexion->bindParam(":cantidad_r",$datos['cantidad_r'],PDO::PARAM_STR);
-        $conexion->bindParam(":usuario_e",$datos['usuario_e'],PDO::PARAM_STR);
-        $conexion->bindParam(":fk_productos_r",$datos['fk_productos_r'],PDO::PARAM_STR);
+        $conexion->bindParam(":usuario_c",$datos['usuario_c'],PDO::PARAM_STR);
+        $conexion->bindParam(":fk_productos_c",$datos['fk_productos_c'],PDO::PARAM_STR);
         if($conexion->execute()){
             return 'ok';
         }else{
@@ -107,6 +107,31 @@ Class AlmacenModel{
         $conexion ->close();
         $conexion = NULL;
     }
+
+    static public function listaProductoSolicitado($tabla){
+        $sql="SELECT a.id AS 'idabastecimiento',a.*,p.*,c.* FROM $tabla a INNER JOIN productos p ON a.fk_productos_r = p.id INNER JOIN categorias c ON p.fk_categoria = c.id";
+        $conexion = Conexion::conectar()->prepare($sql);
+        $conexion->execute();
+        return $conexion->fetchAll();
+
+        $conexion->close();
+        $conexion = NULL;
+    }
+
+    static public function actualizarEstado($tabla,$id){
+        $sql="UPDATE $tabla SET estado_r = 'REALIZADO' WHERE id = $id ";
+        $conexion = Conexion::conectar()->prepare($sql);
+        if($conexion->execute()){
+            return 'ok';
+        }else{
+            print_r(Conexion::conectar()->errorInfo());
+        }
+
+        $conexion ->close();
+        $conexion = NULL;
+
+    }
+
 
 }
 
