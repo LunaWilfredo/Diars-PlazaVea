@@ -83,7 +83,7 @@ Class AlmacenModel{
     }
 
     static public function buscarProducto($tabla,$producto){
-        $sql="SELECT * FROM $tabla p INNER JOIN categorias c ON p.fk_categoria = c.id WHERE nombre_producto = '$producto' OR lote = '$producto' ";
+        $sql="SELECT p.id as 'idpro',p.*,c.* FROM $tabla p INNER JOIN categorias c ON p.fk_categoria = c.id WHERE nombre_producto = '$producto' OR lote = '$producto' ";
         $conexion = Conexion::conectar()->prepare($sql);
         $conexion->execute();
         return $conexion->fetchAll();
@@ -132,6 +132,18 @@ Class AlmacenModel{
 
     }
 
+    static public function actualizarStockRetiro($tabla,$id,$cantidad){
+        $sql="UPDATE $tabla SET cantidad=(cantidad-$cantidad) WHERE id = $id";
+        $conexion = Conexion::conectar()->prepare($sql);
+        if($conexion->execute()){
+            return 'ok';
+        }else{
+            print_r(Conexion::conectar()->errorInfo());
+        }
+
+        $conexion ->close();
+        $conexion = NULL;
+    }
 
 }
 

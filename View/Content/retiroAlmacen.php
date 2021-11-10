@@ -5,7 +5,11 @@
 
     if(isset($_POST['add']) && !empty($_POST['producto_id'])){
         $retiro = AlmacenController::solicitarProductos();
-        echo 'btn presioando '.$_POST['producto_id'].$_POST['cantidad_r'];
+        if($retiro == 'ok'){
+            $id = $_POST['producto_id'];
+            $cantidad = $_POST['cantidad_r'];
+            $stock = AlmacenController::actualizarStockRetiro($id,$cantidad);
+        }
     }
 
     $solicitado = AlmacenController::listaProductoSolicitado();
@@ -70,7 +74,7 @@
                                         <td><?=$i?></td>
                                         <td>
                                             <?=$lista['lote']?>
-                                            <input type="hidden" name="producto_id" class="form-control" value="<?=$lista['id']?>">
+                                            <input type="text" name="producto_id" class="form-control" value="<?=$lista['idpro']?>">
                                         </td>
                                             
                                         <td><?=$lista['nombre_producto']?></td>

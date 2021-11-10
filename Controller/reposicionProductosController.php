@@ -79,7 +79,6 @@ class AlmacenController{
             "usuario_c"=>$_SESSION['usuario'],
             "fk_productos_c"=>$_POST['producto_id']
         );
-        var_dump($datos);
         $respuesta = AlmacenModel::solicitarProductos($tabla,$datos);
         return $respuesta;
     }
@@ -97,6 +96,16 @@ class AlmacenController{
             $respuesta = AlmacenModel::actualizarEstado($tabla,$id);
             return $respuesta;
         }
+    }
+
+    static public function actualizarStockRetiro($id,$cantidad){
+        if(isset($_POST['producto_id']) && !empty($_POST['producto_id']) && isset($_POST['cantidad_r']) && !empty($_POST['cantidad_r']) ){
+            $tabla = "productos";
+            $cantidad = $_POST['cantidad_r'];
+            $id = $_POST['producto_id'];
+            $respuesta = AlmacenModel::actualizarStockRetiro($tabla,$id,$cantidad);
+            return $respuesta;
+        } 
     }
 }
 

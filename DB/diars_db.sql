@@ -281,8 +281,12 @@ INSERT INTO abastecimiento(cantidad_r,fecha_retiro,usuario_e,estado_r,fk_product
 
 SELECT * FROM abastecimiento
 
+/*drop table abastecimiento*/
+
 SELECT a.id AS 'idabastecimiento',a.*,p.*,c.* FROM abastecimiento a INNER JOIN productos p ON a.fk_productos_r = p.id INNER JOIN categorias c 
 ON p.fk_categoria = c.id
+
+/*-------------  -------------------*/
 
 SHOW TABLES 
 DESCRIBE roles
