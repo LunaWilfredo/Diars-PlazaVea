@@ -70,9 +70,7 @@ Class AlmacenModel{
     }
 
     static public function actualizarStock($tabla,$id,$cantidad){
-
-        $sql="UPDATE $tabla SET cantidad = cantidad + $cantidad WHERE id = $id ";
-
+        $sql="UPDATE $tabla SET cantidad = cantidad + $cantidad WHERE id = $id";
         $conexion = Conexion::conectar()->prepare($sql);
         if($conexion->execute()){
             return 'ok';
@@ -82,7 +80,32 @@ Class AlmacenModel{
 
         $conexion ->close();
         $conexion = NULL;
+    }
 
+    static public function buscarProducto($tabla,$producto){
+        $sql="SELECT * FROM $tabla p INNER JOIN categorias c ON p.fk_categoria = c.id WHERE nombre_producto = '$producto' OR lote = '$producto' ";
+        $conexion = Conexion::conectar()->prepare($sql);
+        $conexion->execute();
+        return $conexion->fetchAll();
+
+        $conexion ->close();
+        $conexion = NULL;
+    }
+
+    static public function retiroAlmacen($tabla,$datos){
+        $sql="INSERT INTO abastecimiento(cantidad_r,fecha_retiro,usuario_e,estado_r,fk_productos_r) VALUES (:cantidad_r,CURDATE(),:usuario_e,'PENDIENTE',:fk_productos_r)";
+        $conexion = Conexion::conectar()->prepare($sql);
+        $conexion->bindParam(":cantidad_r",$datos['cantidad_r'],PDO::PARAM_STR);
+        $conexion->bindParam(":usuario_e",$datos['usuario_e'],PDO::PARAM_STR);
+        $conexion->bindParam(":fk_productos_r",$datos['fk_productos_r'],PDO::PARAM_STR);
+        if($conexion->execute()){
+            return 'ok';
+        }else{
+            print_r(Conexion::conectar()->errorInfo());
+        }
+
+        $conexion ->close();
+        $conexion = NULL;
     }
 
 }

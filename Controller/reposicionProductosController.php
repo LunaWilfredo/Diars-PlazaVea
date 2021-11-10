@@ -60,9 +60,34 @@ class AlmacenController{
 
             $respuesta = AlmacenModel::actualizarStock($tabla,$id,$cantidad);
             return $respuesta;
-        }
-        
+        } 
     }
+
+    static public function buscarProducto(){
+        if(isset($_POST['buscar']) && !empty($_POST['buscar_producto'])){
+            $tabla = "productos";
+            $producto = $_POST['buscar_producto'];
+            $respuesta = AlmacenModel::buscarProducto($tabla,$producto);
+            return $respuesta;
+        }
+    }
+
+    static public function retiroAlmacen(){
+        if(isset($_POST['efectuar']) && !empty($_POST['producto_id'])){
+            $tabla = "abastecimiento";
+            $datos = array(
+                "cantidad_r"=>$_POST['cantidad_r'],
+                "usuario_e"=>$_SESSION['usuario'],
+                "fk_productos_r"=>$_POST['producto_id']
+            );
+            var_dump($datos);
+            var_dump($tabla);
+            $respuesta = AlmacenModel::retiroAlmacen($tabla,$datos);
+            return $respuesta;
+        }
+    }
+
+
 
 }
 
