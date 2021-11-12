@@ -286,7 +286,28 @@ SELECT * FROM abastecimiento
 SELECT a.id AS 'idabastecimiento',a.*,p.*,c.* FROM abastecimiento a INNER JOIN productos p ON a.fk_productos_r = p.id INNER JOIN categorias c 
 ON p.fk_categoria = c.id
 
-/*-------------  -------------------*/
+/*------------- Resquest  -------------------*/
+CREATE TABLE if NOT EXISTS codigo_request(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+	codigo_rq VARCHAR(20) NOT NULL ,
+	proveedor VARCHAR (50) NOT NULL ,
+	fecha_rq VARCHAR (20) NOT NULL,
+	estado_rq VARCHAR(20) NOT NULL 
+)ENGINE INNODB;
+
+SELECT * FROM codigo_request
+
+CREATE TABLE if NOT EXISTS detalle_request(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	descripcion_p VARCHAR (20) NOT NULL ,
+	marca_p VARCHAR (20) NOT NULL ,
+	cantidad_p INT NOT NULL ,
+	observaciones VARCHAR(100) NOT NULL ,
+	fk_c_request INT NOT NULL ,
+	CONSTRAINT fk_c_request FOREIGN KEY (fk_c_request) REFERENCES codigo_request(id)
+)ENGINE INNODB;
+
+SELECT * FROM detalle_request
 
 SHOW TABLES 
 DESCRIBE roles
