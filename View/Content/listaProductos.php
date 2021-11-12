@@ -26,7 +26,7 @@
             <div class="row">
                 <!-- Title -->
                 <div class="col-lg-12 col-md-12 col-sm-12 text-center py-2">
-                    <h1 class="border-botton">Consultar Productos</h1>
+                    <h1 class="border-botton">Lista de Productos</h1>
                 </div>
                 <!-- Body content -->
                 <div class="col-lg-12 col-md-12 col-sm-12 pb-2">

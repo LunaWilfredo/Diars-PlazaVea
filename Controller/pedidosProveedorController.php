@@ -31,8 +31,30 @@ class ProveedorController {
                 "fk_c_request"=>$_GET['ip']
             );
             var_dump($datos);
+            $respuesta = ProveedorModel::productosRequest($tabla,$datos);
+            return $respuesta; 
         }
     }
+
+    static public function listaProductosRequest(){
+        $tabla = "detalle_request";
+        $respuesta = ProveedorModel::listaProductosRequest($tabla);
+        return $respuesta;
+    }
+
+    static public function guardarRequest(){
+        if(isset($_POST['pedido']) && !empty($_GET['ip'])){
+            $tabla = "request";
+            $datos = array(
+                "correo"=>$_POST['correop'],
+                "fk_cd_request"=>$_GET['ip']
+            );
+            $respuesta = ProveedorModel::guardarRequest($tabla,$datos);
+            return $respuesta;
+            var_dump($respuesta);
+        }
+    }
+
 }
 
 

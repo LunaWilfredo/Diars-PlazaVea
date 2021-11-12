@@ -38,7 +38,7 @@
                     </div>
                     <div class="ml-2">
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#refund">
-                            <i class="fas fa-print"></i> Imprimir Refund
+                            <i class="fas fa-print"></i> Imprimir Exchange
                         </button>
                     </div>
                 </div>

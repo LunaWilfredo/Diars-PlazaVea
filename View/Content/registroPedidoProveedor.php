@@ -1,21 +1,28 @@
 <?php
     if(isset($_POST['btnregistrar']) && !empty($_POST['producto'])){
         $registro = ProveedorController::productosRequest();
-        if($registro == 'ok'){
+    }
+
+    $listar = ProveedorController::listaProductosRequest();
+
+    if(isset($_POST['pedido']) && !empty($_GET['ip'])){
+        $request = ProveedorController::guardarRequest();
+        if($request == 'ok'){
             echo '<script>
-                    if(window.history.replaceState){
-                        window.history.repaceState(null,null,window.location.href);
-                    }
+                     if(window.history.replaceState){
+                          window.history.repaceState(null,null,window.location.href);
+                      }
                 </script>';
-            echo "
-            <script>
-                setTimeout(function(){
-                    window.location = 'body.php?pagina=pedidosProveedor';
-                },1000);
-            </script>
-            ";  
+              echo "
+              <script>
+                  setTimeout(function(){
+                      window.location = 'body.php?pagina=pedidosProveedor';
+                  },1000);
+             </script>
+              ";  
         }
     }
+    
 
 ?>
 <section class="">
@@ -49,7 +56,7 @@
                     <table class="table" id="dataTable" cellspacing="0">
                         <thead class="text-center bg-danger text-light">
                             <tr>
-                                <th>#</th>
+                                <th>N°</th>
                                 <th>Producto</th>
                                 <th>Marca</th>
                                 <th>Cantidad</th>
@@ -58,17 +65,19 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php $i=0; foreach ($listar as $listar): $i++;?>
                             <tr>
-                                <td>1</td>
-                                <td>Producto Seleccionado</td>
-                                <td>Marca</td>
-                                <td>4</td>
-                                <td>Observaciones</td>
+                                <td><?=$i?></td>
+                                <td><?=$listar['descripcion_p']?></td>
+                                <td><?=$listar['marca_p']?></td>
+                                <td><?=$listar['cantidad_p']?></td>
+                                <td><?=$listar['observaciones']?></td>
                                 <td>
-                                    <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                    <a href="body.php?pagina=registroPedidoProveedor&ip=1&dlt=<?=$listar['id']?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                     <!-- <a href="" class="btn btn-primary"><i class="far fa-edit"></i></i></a> -->
                                 </td>
-                            </tr>                                   
+                            </tr>   
+                            <?php endforeach; ?>                                
                         </tbody>
                     </table>
                 </div>
@@ -122,44 +131,24 @@
 <!-- Modal confirmacion de pedido y envio -->
 <div class="modal fade" id="registroPedido" tabindex="-1" aria-labelledby="registroPedido" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Registro de Productos</h5>
-        </div>
-        <div class="modal-body">
-          <!-- Formulario de registro de productos -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Guardar Request</h5>
+            </div>
             <form action="" method="post">
-                <div class="row">
-                    <div class="col-md">
-                        <label for="codigoProducto">Proveedor</label>
-                        <input type="text" class="form-control text-center" name="" value="">
-                    </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md">
+                            <label for="codigoproducto">Correo</label>
+                            <input type="text" class="form-control text-center" name="correop" value="">
+                        </div>
+                    </div>    
                 </div>
-                <div class="row">
-                    <div class="col-md">
-                        <label for="codigoproducto">Correo</label>
-                        <input type="text" class="form-control text-center" name="" value="">
-                    </div>
-                </div>    
-                <div class="row">
-                    <div class="col-md">
-                        <label for="codigoproducto">Fecha Pedido</label>
-                        <input type="text" class="form-control" value="<?php echo date("d/M/Y")?>" readonly>
-                    </div>
-                </div> 
-                <div class="row">
-                    <div class="col-md">
-                        <label for="codigoproducto">Observaciones</label>
-                        <textarea name="" id="" cols="10" rows="3" class="form-control"></textarea>
-                    </div>
-                </div>            
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success" name="pedido" >Realizar Pedido</button>
+                </div>
             </form>
-          <!-- Fin de formulario de buesqueda de productos -->
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-success">Realizar Pedido</button>
-        </div>
-      </div>
     </div>
 </div>
