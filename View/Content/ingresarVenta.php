@@ -53,8 +53,6 @@
         }
     }
 
-    
-
 ?>
 <section class="">
     <form action="" method="post">
