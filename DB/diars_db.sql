@@ -170,7 +170,8 @@ INSERT INTO detalle_ventas (cantidad,fk_productos,fk_ventas) VALUES (1,3,1);
 SELECT *FROM detalle_ventas
 
 SELECT p.lote,p.nombre_producto AS 'producto',p.precio,dv.cantidad,dv.id,v.* FROM detalle_ventas dv 
-INNER JOIN productos p ON dv.fk_productos = p.id INNER JOIN ventas v ON  dv.fk_ventas = v.id WHERE v.id =3
+INNER JOIN productos p ON dv.fk_productos = p.id INNER JOIN ventas v ON  dv.fk_ventas = v.id 
+WHERE v.id =3
 
 /*Actualizacion de estock despues de venta*/
 UPDATE productos p INNER JOIN detalle_ventas dv ON dv.fk_productos = p.id 
