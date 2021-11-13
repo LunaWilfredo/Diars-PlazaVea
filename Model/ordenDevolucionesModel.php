@@ -110,7 +110,25 @@ Class CambioDevolucionModel{
         $conexion = NULL;
     }
 
-    
+    static public function pdfRefund($tabla,$code){
+        $sql = "SELECT dv.*,u.uname AS 'cajero' FROM $tabla dv INNER JOIN usuarios u ON dv.fk_usuario_c = u.id WHERE cod_comp_dev = '$code'";
+        $conexion = Conexion::conectar()->prepare($sql);
+        $conexion->execute();
+        return $conexion;
+
+        $conexion->close();
+        $conexion=NULL;
+    }
+
+    static public function pdfExchange($tabla,$code){
+        $sql = "SELECT e.comp_v AS 'c_venta',comp_c AS 'c_cambio',e.usuario AS 'cajero',p.nombre_producto AS 'producto',d.cantidad_c AS 'cantidad_c' ,p.marca as 'marca',p.lote as 'lote',p.precio as 'precio' FROM $tabla e INNER JOIN detalle_exchange d ON e.usuario = d.usuario INNER JOIN productos p ON d.fk_producto_c = p.id WHERE e.comp_c =  '$code'";
+        $conexion = Conexion::conectar()->prepare($sql);
+        $conexion->execute();
+        return $conexion;
+
+        $conexion->close();
+        $conexion=NULL;
+    }
 
 }
 

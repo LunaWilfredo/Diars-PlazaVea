@@ -94,10 +94,19 @@ class CambioDevolucionController{
     }
 
     static public function pdfRefund(){
-        if($_POST['code']){
-            $tabla = "";
+        if(isset($_POST['code'])){
+            $tabla = "devoluciones";
             $code = $_POST['code'];
-            $respuesta = ProveedorModel::pdfRefund($tabla,$code);
+            $respuesta = CambioDevolucionModel::pdfRefund($tabla,$code);
+            return $respuesta;
+        }
+    }
+
+    static public function pdfExchange(){
+        if(isset($_POST['code'])){
+            $tabla = "generar_exchange";
+            $code = $_POST['code'];
+            $respuesta = CambioDevolucionModel::pdfExchange($tabla,$code);
             return $respuesta;
         }
     }

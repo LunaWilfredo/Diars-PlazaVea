@@ -234,6 +234,11 @@ SELECT * FROM devoluciones
 
 SELECT dv.*,u.uname AS 'cajero' FROM devoluciones dv INNER JOIN usuarios u ON dv.fk_usuario_c = u.id
 
+/*vista detallada de devolucion*/
+SELECT dv.*,u.uname AS 'cajero' FROM devoluciones dv INNER JOIN usuarios u ON dv.fk_usuario_c = u.id 
+WHERE cod_comp_dev = 'ORD342603793'
+/*----------------------------*/
+
 INSERT INTO devoluciones (num_comp,monto_dev,fecha_dev,motivo_dev,cod_comp_dev,fk_usuario_c) 
 VALUES ('ORD00001',CURDATE(),'no gusta producto','CV2127737705',1)
 
@@ -250,8 +255,8 @@ CREATE TABLE if NOT EXISTS detalle_exchange(
 
 SELECT * FROM detalle_exchange
 
-SELECT ex.id AS 'idcambio',ex.cantidad_c AS 'cant_cambio',ex.usuario,p.* FROM detalle_exchange ex INNER JOIN productos p 
-ON ex.fk_producto_c = p.id WHERE ex.usuario = '75388728'
+SELECT ex.id AS 'idcambio',ex.cantidad_c AS 'cant_cambio',ex.usuario,p.* FROM detalle_exchange ex 
+INNER JOIN productos p ON ex.fk_producto_c = p.id WHERE ex.usuario = '75388728'
 
 INSERT INTO detalle_exchange(cantidad_c,usuario,fk_producto_c)VALUES(2,'admin',3)
 
@@ -265,6 +270,12 @@ CREATE TABLE if NOT EXISTS generar_exchange(
 SELECT * FROM generar_exchange
 
 INSERT INTO generar_exchange (comp_v,comp_c,usuario) VALUES ()
+
+SELECT e.comp_v AS 'c_venta',comp_c AS 'c_cambio',e.usuario AS 'cajero',p.nombre_producto 
+AS 'producto',d.cantidad_c AS 'cantidad_c' ,p.marca as 'marca',p.lote as 'lote',p.precio as 'precio'
+ FROM generar_exchange e INNER JOIN detalle_exchange d ON e.usuario = d.usuario 
+INNER JOIN productos p ON d.fk_producto_c = p.id WHERE e.comp_c = 'ODC441870183'
+
 
 /*retiro producto*/
 CREATE TABLE if NOT EXISTS abastecimiento(

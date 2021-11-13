@@ -133,7 +133,7 @@
 <!-- Fin de formulario  -->
 
 <!-- Formulario de imprimir refund Vista en otra pestana en pdf -->
-<form action="pdfbase.php" method="post" >
+<form action="pdfbaseRefund.php" method="post" >
     <div class="modal fade" id="refund" tabindex="-1" aria-labelledby="refund" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">

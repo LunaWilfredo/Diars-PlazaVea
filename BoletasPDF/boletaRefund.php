@@ -2,6 +2,9 @@
 
 include_once 'Controller/ordenDevolucionController.php'; 
 
+if(isset($_POST['code']) && !empty($_POST['code'])){
+     $lista = CambioDevolucionController::pdfRefund();
+}
 
 ?>
 <!DOCTYPE html>
@@ -13,6 +16,20 @@ include_once 'Controller/ordenDevolucionController.php';
     <title>Boleta Refund</title>
 </head>
 <body>
- <h1>Hola mundo <?php echo $_POST['code'] ?></h1>
+ <div class="">
+    <h1 class ="">Vale de Consumo</h1>
+    <h2 class ="">Detalles</h2>
+    <?php foreach($lista as $lista):?>
+    <ul>
+        <li>N° Comprobante D: <?=$lista['cod_comp_dev']?></li>
+        <li>Fecha : <?=$lista['fecha_dev']?></li>
+        <li>Motivo: <?=$lista['motivo_dev']?></li>
+        <li>N° Comprobante V: <?=$lista['num_comp']?></li>
+        <li>Cajero: <?=$lista['cajero']?></li>
+    </ul>
+    <h2 class="">Monto de Vale (s/.)</h2>
+    <h1 class=""><?=$lista['monto_dev']?></h1>
+ </div>
+ <?php endforeach ?>
 </body>
 </html>

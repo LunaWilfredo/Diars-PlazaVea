@@ -1,3 +1,39 @@
 .bg-warning{
     background: #ffbf5a !important;
 }
+
+.title{
+    color: #C33C54;
+    text-align: center;
+}
+
+.logo{
+    width: 20%;
+    height: auto;
+    border-radius: 5%;
+}
+
+.cuerpo{
+    width: 20%;
+    font-family: cursive;
+    padding: 10px;
+    /* border: 1px solid black; */
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+}
+
+.subtitle{
+    font-size: medium;
+    color: #C33C54;
+}
+
+.cuerpo ul li{
+    list-style: none;
+    color: #254E70;
+}
+
+.monto{
+    text-align: center;
+    font-size: 50px;
+}
+
+
