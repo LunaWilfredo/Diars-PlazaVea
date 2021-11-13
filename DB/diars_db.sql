@@ -309,5 +309,40 @@ CREATE TABLE if NOT EXISTS detalle_request(
 
 SELECT * FROM detalle_request
 
+CREATE TABLE if NOT EXISTS request(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+	correo VARCHAR(50) NOT NULL ,
+	fk_cd_request INT NOT NULL ,
+	CONSTRAINT fk_cd_request FOREIGN KEY (fk_cd_request) REFERENCES codigo_request(id)
+)ENGINE INNODB;
+
+
+SELECT * FROM request
+INSERT INTO request (correo,fk_cd_request) VALUES ('correo',1)
+
+/*----cotizaciones-----*/
+CREATE TABLE if NOT EXISTS cotizacion(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	fecha VARCHAR(20) NOT NULL ,
+	provedor_c VARCHAR (20) NOT NULL,
+	cod_cotizacion VARCHAR (20) NOT NULL UNIQUE  
+)ENGINE INNODB;
+
+SELECT * FROM cotizacion
+
+CREATE TABLE if NOT EXISTS detalle_cotizacion(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+	producto_c VARCHAR(20) NOT NULL ,
+	marca_c VARCHAR(20) NOT NULL ,
+	cantidad_c INT NOT NULL ,
+	precio_c INT NOT NULL ,
+	observaciones VARCHAR(50),
+	fk_cotizacion INT NOT NULL ,
+	CONSTRAINT fk_cotizacion FOREIGN KEY (fk_cotizacion) REFERENCES cotizacion(id) 
+)ENGINE INNODB;
+
+SELECT * FROM detalle_cotizacion
+
+
 SHOW TABLES 
 DESCRIBE roles

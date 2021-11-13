@@ -93,7 +93,7 @@ $lista = ProveedorController::listaRequest();
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Registro de Productos</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Codigo Generado</h5>
             </div>
             <form action="" method="post">
                 <div class="modal-body">
