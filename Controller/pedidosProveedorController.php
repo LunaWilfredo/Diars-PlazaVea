@@ -96,21 +96,6 @@ class ProveedorController {
 
     static public function facturas(){
         if(isset($_POST['enviar'])){
-            $tabla = "facturas";
-            $archivo = $_FILES['archivo'];
-            $datos = array (
-                "archivo"=>$_FILES['archivo']['name'],
-                "numero_factura"=>$_POST['numerof'],
-                "fecha_pedido"=>$_POST['fecha'],
-                "proveedor"=>$_SESSION['usuario'],
-                "responsable"=>$_POST['responsable'],
-                "observaciones"=>$_POST['obs']
-            );
-            var_dump($datos);
-            var_dump($archivo);
-            
-            $respuesta = ProveedorModel::facturas($tabla,$datos);
-            return $respuesta;
 
             $ruta = "./View/Facturas/";
             if(!is_dir($ruta)){
@@ -123,7 +108,27 @@ class ProveedorController {
             }else{
                 move_uploaded_file($_FILES['archivo']['tmp_name'],$directorio);
             }
+            $tabla = "facturas";
+            $archivo = $_FILES['archivo'];
+            $datos = array (
+                "archivo_nombre"=>$_FILES['archivo']['name'],
+                "archivo_ruta"=>$directorio,
+                "numero_f"=>$_POST['numerof'],
+                "fecha_pedido"=>$_POST['fecha'],
+                "proveedor"=>$_SESSION['usuario'],
+                "responsable"=>$_POST['responsable'],
+                "observaciones"=>$_POST['obs']
+            );           
+            $respuesta = ProveedorModel::facturas($tabla,$datos);
+            return $respuesta;
+
         }
+    }
+
+    static public function listaFacturas(){
+        $tabla = "facturas";
+        $respuesta = ProveedorModel::listaFacturas($tabla);
+        return $respuesta;
     }
 
 }

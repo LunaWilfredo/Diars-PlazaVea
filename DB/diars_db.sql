@@ -343,6 +343,19 @@ CREATE TABLE if NOT EXISTS detalle_cotizacion(
 
 SELECT * FROM detalle_cotizacion
 
+/*-------------facturas---------------*/
+CREATE TABLE if NOT EXISTS facturas(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+	archivo_nombre VARCHAR (200) NOT NULL ,
+	archivo_ruta VARCHAR(200) NOT NULL ,
+	numero_f VARCHAR(20) NOT NULL,
+	fecha_pedido VARCHAR(20) NOT NULL ,
+	proveedor VARCHAR(20) NOT NULL ,
+	responsable VARCHAR(20) NOT NULL,
+	observaciones VARCHAR(100)
+)ENGINE INNODB;
+
+SELECT * FROM facturas
 
 SHOW TABLES 
 DESCRIBE roles

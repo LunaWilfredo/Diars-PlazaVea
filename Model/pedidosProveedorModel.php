@@ -119,6 +119,35 @@ class ProveedorModel{
         return $conexion->fetchAll();
     }
 
+    static public function facturas($tabla,$datos){
+        $sql = "INSERT INTO $tabla(archivo_nombre,archivo_ruta,numero_f,fecha_pedido,proveedor,responsable,observaciones) VALUES(:archivo_nombre,:archivo_ruta,:numero_f,:fecha_pedido,:proveedor,:responsable,:observaciones)";
+        $conexion = Conexion::conectar()->prepare($sql);
+        $conexion->bindParam(":archivo_nombre",$datos['archivo_nombre'],PDO::PARAM_STR);
+        $conexion->bindParam(":archivo_ruta",$datos['archivo_ruta'],PDO::PARAM_STR);
+        $conexion->bindParam(":numero_f",$datos['numero_f'],PDO::PARAM_STR);
+        $conexion->bindParam(":fecha_pedido",$datos['fecha_pedido'],PDO::PARAM_STR);
+        $conexion->bindParam(":proveedor",$datos['proveedor'],PDO::PARAM_STR);
+        $conexion->bindParam(":responsable",$datos['responsable'],PDO::PARAM_STR);
+        $conexion->bindParam(":observaciones",$datos['observaciones'],PDO::PARAM_STR);
+        if($conexion->execute()){
+            return 'ok';
+        }else{
+            print_r(Conexion::conectar()->errorInfo());
+        }
+
+        $conexion->close();
+        $conexion = NULL;
+    }
+
+    static public function listaFacturas($tabla){
+        $sql = "SELECT * FROM $tabla";
+        $conexion = Conexion::conectar()->prepare($sql);
+        $conexion->execute();
+        return $conexion->fetchAll();
+
+        $conexion->close();
+        $conexion = NULL;
+    }
     
 }
 ?>

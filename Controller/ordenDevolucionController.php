@@ -94,7 +94,10 @@ class CambioDevolucionController{
         }
     }
 
-
+    static public function imrpimirRefund(){
+        $tabla="";
+        $datos = "";
+    }
 
 
 }

@@ -1,7 +1,14 @@
 <?php
     if(isset($_POST['enviar'])){
         $factura = ProveedorController::facturas();
+        if($factura == 'ok'){
+            echo '<div class="alert alert-success" role="alert">
+                    Archivo subido con exito
+                </div>';
+        }
     }
+
+    $lista=ProveedorController::listaFacturas();
 
 ?>
 <section class="">
@@ -29,7 +36,7 @@
                 <table class="table" id="dataTable" cellspacing="0">
                     <thead class="text-center bg-danger text-light">
                         <tr>
-                                <th>#</th>
+                                <th>N°</th>
                                 <th>N° Factura</th>
                                 <th>Fecha de Pedido</th>
                                 <th>Proveedor</th>
@@ -40,19 +47,22 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php $i=0; foreach($lista as $lista): $i++;?>
                         <tr>
-                            <td>1</td>
-                            <td>FT0001</td>
-                            <td><?= date('d-M-Y')?></td>
-                            <td>Gloria</td>
-                            <td>Nombre_encargado_proveedor</td>
-                            <td>Nombre_archivo</td>
-                            <td>Observaciones</td>
+                            <td><?=$i?></td>
+                            <td><?=$lista['numero_f']?></td>
+                            <td><?=$lista['fecha_pedido']?></td>
+                            <td><?=$lista['proveedor']?></td>
+                            <td><?=$lista['responsable']?></td>
+                            <td><?=$lista['archivo_nombre']?></td>
+                            <td><?=$lista['observaciones']?></td>
                             <td>
-                                <a href="#" class="btn btn-primary"><i class="fas fa-download"></i></a>
-                                <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                <!-- download -->
+                                <a href="<?=$lista['archivo_ruta']?>" class="btn btn-primary" target="_blank" ><i class="fas fa-download" ></i></a>
+                                <a href="body.php?pagina=enviarFacturas&dlt=<?=$lista['id']?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                             </td>
-                        </tr>                                  
+                        </tr> 
+                        <?php endforeach; ?>                                 
                     </tbody>
                 </table>
             </div>
