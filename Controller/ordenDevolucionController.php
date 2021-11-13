@@ -93,11 +93,14 @@ class CambioDevolucionController{
         }
     }
 
-    static public function imrpimirRefund(){
-        $tabla="";
-        $datos = "";
+    static public function pdfRefund(){
+        if($_POST['code']){
+            $tabla = "";
+            $code = $_POST['code'];
+            $respuesta = ProveedorModel::pdfRefund($tabla,$code);
+            return $respuesta;
+        }
     }
-
 
 }
 

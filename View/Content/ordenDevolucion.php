@@ -133,7 +133,7 @@
 <!-- Fin de formulario  -->
 
 <!-- Formulario de imprimir refund Vista en otra pestana en pdf -->
-<form action="" method="post" >
+<form action="pdfbase.php" method="post" >
     <div class="modal fade" id="refund" tabindex="-1" aria-labelledby="refund" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -146,7 +146,7 @@
                 <div class="modal-body">
                     <div class="text-center">
                         <h1 class="h6 ">Codigo de Orden de Devolucion</h1>
-                        <input type="text" name="" class="form-control text-center w-100 mb-2" value="ORD">
+                        <input type="text" name="code" class="form-control text-center w-100 mb-2" value="ORD">
                     </div>
                 </div>
                 <div class="modal-footer">
