@@ -1,3 +1,9 @@
+<?php
+    if(isset($_POST['enviar'])){
+        $factura = ProveedorController::facturas();
+    }
+
+?>
 <section class="">
     <div class="container-fluid" style="width:86vw">
         <div class="row">
@@ -46,46 +52,7 @@
                                 <a href="#" class="btn btn-primary"><i class="fas fa-download"></i></a>
                                 <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                             </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>FT0001</td>
-                            <td><?= date('d-M-Y')?></td>
-                            <td>Gloria</td>
-                            <td>Nombre_encargado_proveedor</td>
-                            <td>Nombre_archivo</td>
-                            <td>Observaciones</td>
-                            <td>
-                                <a href="#" class="btn btn-primary"><i class="fas fa-download"></i></a>
-                                <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>FT0001</td>
-                            <td><?= date('d-M-Y')?></td>
-                            <td>Gloria</td>
-                            <td>Nombre_encargado_proveedor</td>
-                            <td>Nombre_archivo</td>
-                            <td>Observaciones</td>
-                            <td>
-                                <a href="#" class="btn btn-primary"><i class="fas fa-download"></i></a>
-                                <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>FT0001</td>
-                            <td><?= date('d-M-Y')?></td>
-                            <td>Gloria</td>
-                            <td>Nombre_encargado_proveedor</td>
-                            <td>Nombre_archivo</td>
-                            <td>Observaciones</td>
-                            <td>
-                                <a href="#" class="btn btn-primary"><i class="fas fa-download"></i></a>
-                                <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                            </td>
-                        </tr>                                   
+                        </tr>                                  
                     </tbody>
                 </table>
             </div>
@@ -102,54 +69,48 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Registro de Factura</h5>
             </div>
-            <div class="modal-body">
-            <!-- Formulario de registro de productos -->
-                <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
+                <div class="modal-body">
                     <div class="row">
                         <div class="col-lg col-md col-sm">
                             <label for="archivoFactura">Archivo Factura</label>
-                            <input type="file" class="custom-file file-input" name="" value="">
+                            <input type="file" class="custom-file file-input" name="archivo" value="">
                         </div>
                     </div>
                     <hr>
                     <div class="row">
                         <div class="col-md">
                             <label for="codigoProducto">N° Factura</label>
-                            <input type="text" class="form-control text-center" name="" value="">
+                            <input type="text" class="form-control text-center" name="numerof" value="">
                         </div>
                         <div class="col-md">
                             <label for="codigoproducto">Fecha Pedido</label>
-                            <input type="date" class="form-control text-center" name="" value="">
+                            <input type="date" class="form-control text-center" name="fecha" value="">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md">
                             <label for="codigoproducto">Proveedor</label>
-                            <select name="" id="" class="form-control" value="" selected>
-                                <option value="">Seleccionar</option>
-                                <option value="">Gloria</option>
-                                <option value="">Alicor</option>
-                                <option value="">CocaCola</option>
-                            </select>
+                            <input type="text" class="form-control text-center" name="proveedor" value="<?=$_SESSION['usuario']?>" readonly>
                         </div>
                         <div class="col-md">
                             <label for="codigoproducto">Responsable Proveedor</label>
-                            <input type="text" class="form-control text-center" name="" value="">
+                            <input type="text" class="form-control text-center" name="responsable" value="">
                         </div>
                     </div>    
                     <div class="row">
                         <div class="col-md">
                             <label for="codigoproducto">Observaciones</label>
-                            <textarea name="" id="" cols="10" rows="3" class="form-control"></textarea>
+                            <textarea name="obs" id="" cols="10" rows="3" class="form-control"></textarea>
                         </div>
                     </div>            
-                </form>
-            </div>
-            <!-- Fin de formulario de buesqueda de productos -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-warning"><i class="fas fa-paper-plane"></i> Enviar</button>
-            </div>
+                </div>
+                <!-- Fin de formulario de buesqueda de productos -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-warning" name="enviar"><i class="fas fa-paper-plane"></i> Enviar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

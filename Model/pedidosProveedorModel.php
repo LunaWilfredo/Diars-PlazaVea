@@ -118,6 +118,7 @@ class ProveedorModel{
         $conexion->execute();
         return $conexion->fetchAll();
     }
+
     
 }
 ?>
