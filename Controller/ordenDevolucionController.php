@@ -10,7 +10,7 @@ class CambioDevolucionController{
 
             $respuesta = CambioDevolucionModel::buscarProductoPasillo($tabla,$buscar);
             return $respuesta;
-        }
+        } 
     }
 
     static public function listarProductosPasillos(){

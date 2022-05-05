@@ -13,7 +13,7 @@ Class CambioDevolucionModel{
 
         $conexion->close();
         $conexion = NULL;
-    }
+    } 
 
     static public function listarProductosPasillos($tabla){
         $sql = "SELECT p.*,c.nombre_categoria as 'categoria',pa.numero_pasillo as 'pasillo' FROM $tabla p INNER JOIN categorias c ON p.fk_categoria = c.id INNER JOIN pasillos pa ON p.fk_categoria = pa.id";
@@ -41,7 +41,7 @@ Class CambioDevolucionModel{
             print_r(Conexion::conectar()->errorInfo());
         }
 
-        $conexion-close();
+        $conexion->close();
         $conexion = NULL;
     }
 
